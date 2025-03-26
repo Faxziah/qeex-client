@@ -1,5 +1,6 @@
-import {ethers} from "ethers";
+import {BaseContract, ethers} from "ethers";
 import {MetaMaskInpageProvider} from "@metamask/providers";
+
 
 declare global {
   interface Window {
@@ -8,7 +9,6 @@ declare global {
 }
 
 export async function _createContract(contractText: string) {
-
   if (!window.ethereum) {
     console.warn("MetaMask is not installed");
     return;
@@ -17,13 +17,23 @@ export async function _createContract(contractText: string) {
   const provider = new ethers.BrowserProvider(window.ethereum);
   const signer = await provider.getSigner();
 
-  const response = await fetch("/contracts/EverlastingContract.sol/EverlastingContract.json");
-  const {abi: contractAbi, bytecode: contractBytecode} = await response.json();
+  const everlastingContractAbi = await fetch("/contracts/EverlastingContract.sol/EverlastingContract.json");
+  const {abi: contractAbi, bytecode: contractBytecode} = await everlastingContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
-
-  const contract = await contractFactory.deploy(contractText);
+  const contract: BaseContract = await contractFactory.deploy(contractText);
 
   await contract.waitForDeployment();
+
+  const response = await fetch("/api/contracts/create", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({address: contract.target}),
+  });
+
+  const result: any = await response.json();
+
+  console.log('result', result);
+
   return contract.target;
 }
