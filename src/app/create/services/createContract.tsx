@@ -21,14 +21,28 @@ export async function _createContract(contractText: string) {
   const {abi: contractAbi, bytecode: contractBytecode} = await everlastingContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
+
+  console.log('Before creating contract');
+
   const contract: BaseContract = await contractFactory.deploy(contractText);
 
+  console.log('After creating contract');
+
   await contract.waitForDeployment();
+
+  console.log('After deploying contract');
+
+  const walletAddress = await signer.getAddress();
+
+  const data = {
+    contractAddress: contract.target,
+    walletAddress: walletAddress
+  };
 
   const response = await fetch("/api/contracts/create", {
     method: "POST",
     headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({address: contract.target}),
+    body: JSON.stringify(data),
   });
 
   const result: any = await response.json();
