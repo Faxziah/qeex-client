@@ -3,8 +3,12 @@
 import React from "react";
 import {useMetaMaskConnection} from "@/app/create/hooks/useMetaMaskConnection";
 
-export default function ConnectButton() {
-  const {isConnected, connect} = useMetaMaskConnection();
+interface props {
+  isConnected: boolean;
+}
+
+export default function ConnectButton({isConnected}: props) {
+  const {connect} = useMetaMaskConnection();
 
   return (
     <div>

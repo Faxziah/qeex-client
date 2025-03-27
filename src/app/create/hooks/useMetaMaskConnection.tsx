@@ -41,7 +41,7 @@ export function useMetaMaskConnection() {
       const requestedAccounts = await window.ethereum.request({method: "eth_requestAccounts"}) as string[];
       setIsConnected(requestedAccounts.length > 0);
     } catch (e) {
-      console.error(e);
+      console.log(e);
       setIsConnected(false);
     }
   }

@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
-import {useMetaMaskConnection} from "@/app/create/hooks/useMetaMaskConnection";
-import {_createContract} from "@/app/create/services/createContract";
+import {_createContract} from "@/app/create/services/_createContract";
 
-export default function ConnectButton() {
-  const {isConnected} = useMetaMaskConnection();
+interface props {
+  isConnected: boolean;
+}
+
+export default function ConnectButton({isConnected}: props) {
 
   async function createContract(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

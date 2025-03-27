@@ -1,3 +1,5 @@
+'use client';
+
 import {BaseContract, ethers} from "ethers";
 import {MetaMaskInpageProvider} from "@metamask/providers";
 
@@ -45,9 +47,9 @@ export async function _createContract(contractText: string) {
     body: JSON.stringify(data),
   });
 
-  const result: any = await response.json();
+  const result: object = await response.json();
 
-  console.log('result', result);
+  console.log('result _createContract', result);
 
   return contract.target;
 }
