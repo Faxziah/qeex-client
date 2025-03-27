@@ -1,3 +1,5 @@
+'use client';
+
 import ConnectButton from "@/app/create/components/ConnectButton";
 import ContractCreateForm from "@/app/create/components/ContractCreateForm";
 import {useMetaMaskConnection} from "@/app/create/hooks/useMetaMaskConnection";

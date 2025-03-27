@@ -1,11 +1,6 @@
-import {useState, useEffect} from "react";
-import {MetaMaskInpageProvider} from "@metamask/providers";
+'use client';
 
-declare global {
-  interface Window {
-    ethereum?: MetaMaskInpageProvider;
-  }
-}
+import {useState, useEffect} from "react";
 
 export function useMetaMaskConnection() {
   const [isConnected, setIsConnected] = useState<boolean>(false);

@@ -1,14 +1,6 @@
 'use client';
 
 import {BaseContract, ethers} from "ethers";
-import {MetaMaskInpageProvider} from "@metamask/providers";
-
-
-declare global {
-  interface Window {
-    ethereum?: MetaMaskInpageProvider;
-  }
-}
 
 export async function _createContract(contractText: string) {
   if (!window.ethereum) {

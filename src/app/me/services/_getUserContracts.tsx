@@ -1,17 +1,14 @@
 'use client';
 
 import {ethers} from "ethers";
-import {MetaMaskInpageProvider} from "@metamask/providers";
 
-
-declare global {
-  interface Window {
-    ethereum?: MetaMaskInpageProvider;
+export async function _getUserContracts(): Promise<object[] | undefined> {
+  if (!window.ethereum) {
+    console.warn("MetaMask is not installed");
+    return;
   }
-}
 
-export async function _getUserContracts(): Promise<object[]> {
-  const provider = new ethers.BrowserProvider(window.ethereum as MetaMaskInpageProvider);
+  const provider = new ethers.BrowserProvider(window.ethereum);
   const signer = await provider.getSigner();
   const walletAddress: string = await signer.getAddress();
 
