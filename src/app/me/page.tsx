@@ -41,7 +41,7 @@ export default function Home() {
           {isConnected && !contracts.length ? (
             <button>Контрактов еще нет. Создайте свой первый контракт</button>
           ) : (
-            <div className={`flex flex-wrap gap-x-20 gap-y-8 px-40 py-20`}>
+            <div className={`flex flex-wrap gap-x-16 gap-y-8 px-40 py-20`}>
               {contracts.map((contract: IContract) => (
                 <Contract key={contract.id} {...contract}/>
               ))}

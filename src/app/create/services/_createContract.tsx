@@ -28,9 +28,13 @@ export async function _createContract(contractText: string) {
 
   const walletAddress = await signer.getAddress();
 
+  const network = await provider.getNetwork();
+  const chainId = network.chainId;
+
   const data = {
     contractAddress: contract.target,
-    walletAddress: walletAddress
+    walletAddress: walletAddress,
+    chainId: Number(chainId)
   };
 
   const response = await fetch("/api/contracts/create", {

@@ -6,7 +6,8 @@ export async function POST(req: Request) {
 
     const data = {
       contractAddress: request.contractAddress,
-      walletAddress: request.walletAddress
+      walletAddress: request.walletAddress,
+      chainId: request.chainId
     };
 
     const response = await fetch(process.env.BACKEND_URL + "/api/contracts/create", {

@@ -12,8 +12,12 @@ export async function _getUserContracts(): Promise<object[] | undefined> {
   const signer = await provider.getSigner();
   const walletAddress: string = await signer.getAddress();
 
+  const network = await provider.getNetwork();
+  const chainId = network.chainId;
+
   const params = new URLSearchParams();
   params.append("walletAddress", walletAddress);
+  params.append("chainId", String(chainId));
 
   const response = await fetch(`/api/contracts?${params}`, {
     method: "GET",
