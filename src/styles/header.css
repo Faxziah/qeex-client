@@ -1,0 +1,43 @@
+.logo {
+    @apply pt-[24px] pb-[24px] pl-[32px] flex items-center gap-[8px] cursor-pointer whitespace-nowrap size-max;
+}
+
+.logo-text {
+    @apply text-foreground text-[36px] font-[500] leading-[44px];
+}
+
+.nav > ul > li {
+    @apply relative;
+}
+
+.nav > ul > li, .nav > ul > a > li, .underline-violet {
+    @apply cursor-pointer pt-[8px] px-[16px] pb-[24px];
+
+    @variant hover {
+        @apply text-violet underline decoration-5 underline-offset-[11px];
+    }
+}
+
+.nav > ul > li > ul {
+    @apply bg-subnav-bg text-foreground font-[400] leading-[20px] rounded-[12px] size-max absolute right-0 pt-[26px] pb-[30px] top-[50px] hidden;
+}
+
+.nav > ul > li:hover > ul {
+    @apply block;
+}
+
+.nav > ul > li > ul li {
+    @apply pr-[48px] py-[14px] pl-[32px] cursor-pointer;
+
+    @variant hover {
+        @apply bg-background rounded-[12px];
+
+        @variant before {
+            @apply content-[""] absolute left-[8px] w-[8px] h-[8px] bg-button-violet-bg rounded-full translate-[75%];
+        }
+
+        @variant after {
+            @apply content-[url("/svg/arrow.svg")] absolute right-[15px] translate-[12%];
+        }
+    }
+}

@@ -1,8 +1,8 @@
 'use client';
 
-import ConnectButton from "@/app/create/components/ConnectButton";
+import ConnectButton from "@/app/components/ConnectButton";
 import ContractCreateForm from "@/app/create/components/ContractCreateForm";
-import {useMetaMaskConnection} from "@/app/create/hooks/useMetaMaskConnection";
+import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection";
 
 export default function Home() {
   const {isConnected} = useMetaMaskConnection();
@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className="p-4">
       <main>
-        <ConnectButton isConnected={isConnected}/>
+        <ConnectButton/>
         <ContractCreateForm isConnected={isConnected}/>
       </main>
     </div>

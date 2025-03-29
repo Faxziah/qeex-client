@@ -7,7 +7,25 @@ export function useMetaMaskConnection() {
 
   useEffect(() => {
     checkIsConnected();
+
+    if (window.ethereum) {
+      // window.ethereum.on('accountsChanged', handleAccountsChanged); // warning ts
+      window.ethereum.on('accountsChanged', (...accounts: unknown[]) => {
+        handleAccountsChanged(accounts[0] as string[]);
+      });
+    }
+
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.off('accountsChanged', handleAccountsChanged);
+      }
+    };
+
   }, []);
+
+  const handleAccountsChanged = (accounts: string[]) => {
+    setIsConnected(!!accounts.length);
+  };
 
   async function checkIsConnected() {
     if (!window.ethereum) {
@@ -25,8 +43,6 @@ export function useMetaMaskConnection() {
   }
 
   async function connect() {
-
-    console.log('window.ethereum', window.ethereum);
     if (!window.ethereum) {
       alert("Please install MetaMask");
       return;

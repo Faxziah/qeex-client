@@ -2,8 +2,8 @@
 
 import {useState, useEffect} from "react";
 
-import ConnectButton from "@/app/create/components/ConnectButton";
-import {useMetaMaskConnection} from "@/app/create/hooks/useMetaMaskConnection";
+import ConnectButton from "@/app/components/ConnectButton";
+import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection";
 import {_getUserContracts} from "@/app/me/services/_getUserContracts";
 import Contract from "@/app/me/components/Contract";
 import {IContract} from "@/app/me/interface/IContract";
@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div className="p-4">
       <main>
-        <ConnectButton isConnected={isConnected}/>
+        <ConnectButton/>
 
         <div className="flex flex-col items-center">
           <h1
