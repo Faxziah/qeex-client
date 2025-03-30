@@ -1,20 +1,18 @@
 'use client';
 
-import React, {useState} from "react";
+import React from "react";
 import {IContract} from "@/app/me/interface/IContract";
 import {_getContract} from "@/app/me/services/_getContract";
-import Modal from "@/app/components/Modal";
 import {formatDateDMYHI} from "@/app/helpers/formatDate";
-
+import {useModal} from "@/app/context/ModalContext";
+import {voidFunction} from "@/app/helpers/voidFunction";
 
 export default function Contract({id, chain_id, address, created_at}: IContract) {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [contractText, setContractText] = useState<string>('');
+  const {showModal} = useModal();
 
   async function getContract(contractAddress: string) {
     const contractText: string | undefined = await _getContract(contractAddress);
-    setIsModalOpen(true);
-    setContractText(contractText ?? '');
+    showModal(`Контракт ${address}`, contractText ?? '', undefined, voidFunction, voidFunction, true);
   }
 
   return (
@@ -26,10 +24,6 @@ export default function Contract({id, chain_id, address, created_at}: IContract)
         <p>Адрес контракта: {address}</p>
         <p>Дата создания: {formatDateDMYHI(created_at)}</p>
       </div>
-      <Modal isOpen={isModalOpen} onCloseAction={() => setIsModalOpen(false)} title={`Контракт ${address}`}>
-        <div dangerouslySetInnerHTML={{__html: contractText}}/>
-      </Modal>
     </div>
-
   );
 }

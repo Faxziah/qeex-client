@@ -29,10 +29,8 @@ export default function Home() {
   }
 
   return (
-    <div className="p-4">
+    <div>
       <main>
-        <ConnectButton/>
-
         <div className="flex flex-col items-center">
           <h1
             className="text-4xl font-extrabold dark:text-white">Мои контракты</h1>

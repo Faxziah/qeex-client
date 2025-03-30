@@ -12,15 +12,21 @@
 
 .nav > ul > li, .nav > ul > a > li {
     @apply cursor-pointer pt-[8px] px-[16px] pb-[24px];
-
-    @variant hover {
-        @apply text-violet underline decoration-5 underline-offset-[11px];
-    }
 }
 
 .nav > ul > li, .nav > ul > a > li, .underline-violet {
+    @apply relative;
+
     @variant hover {
-        @apply text-violet underline decoration-5 underline-offset-[11px];
+        @apply bg-background rounded-[12px];
+
+        @variant before {
+            @apply content-[""] absolute left-[35%] bottom-[10px] w-[6px] h-[6px] bg-button-violet-bg rounded-full;
+        }
+
+        @variant after {
+            @apply content-[""] absolute left-[calc(35%+10px)] bottom-[10px] w-[30px] h-[6px] bg-button-violet-bg rounded-full;
+        }
     }
 }
 

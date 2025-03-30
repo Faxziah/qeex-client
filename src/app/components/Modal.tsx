@@ -1,20 +1,29 @@
 'use client';
 
 import React, {useEffect} from "react";
+import Image from "next/image";
 
 interface ModalProps {
   isOpen: boolean;
-  onCloseAction: () => void;
   title: string;
+  type?: 'error' | 'warning' | 'success' | 'pencil';
+  onCloseAction: () => void;
+  onConfirmAction?: () => void;
   children: React.ReactNode;
-  onConfirm?: () => void;
 }
 
-export default function Modal({isOpen, onCloseAction, title, children, onConfirm}: ModalProps) {
+const modalIconsPath = {
+  error: '/svg/error.svg',
+  warning: '/svg/warning.svg',
+  success: '/svg/success.svg',
+  pencil: '/svg/pencil.svg',
+};
+
+export default function Modal({isOpen, title, type, onCloseAction, onConfirmAction, children}: ModalProps) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        onCloseAction(); // Закрываем модалку при нажатии Escape
+        onCloseAction();
       }
     };
 
@@ -27,7 +36,9 @@ export default function Modal({isOpen, onCloseAction, title, children, onConfirm
     };
   }, [isOpen, onCloseAction]);
 
-  if (!isOpen) return null;
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -40,6 +51,14 @@ export default function Modal({isOpen, onCloseAction, title, children, onConfirm
             <div className="sm:flex sm:items-start">
               <div
                 className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full sm:mx-0 sm:size-10">
+                {type && modalIconsPath[type] ?
+                  <Image
+                    src={modalIconsPath[type]}
+                    width={32}
+                    height={32}
+                    alt="Modal icon"
+                  />
+                  : null}
               </div>
               <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                 <h3 className="text-base font-semibold text-gray-900" id="modal-title">{title}</h3>
@@ -50,8 +69,8 @@ export default function Modal({isOpen, onCloseAction, title, children, onConfirm
             </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-            {onConfirm && (
-              <button onClick={onConfirm} type="button"
+            {onConfirmAction && (
+              <button onClick={onConfirmAction} type="button"
                       className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto">
                 Deactivate
               </button>

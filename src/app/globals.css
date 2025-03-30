@@ -9,6 +9,12 @@
   --violet: rgb(145, 104, 246);
   --button-violet-bg: rgb(209, 196, 233);
   --button-violet: rgb(101, 31, 255);
+  --button-2-bg: rgb(18, 98, 255);
+  --button-2-bg-hover: rgb(0, 70, 255);
+  --title: rgb(18, 98, 255);
+  --subtitle: rgb(75, 85, 99);
+  --border: rgb(226, 232, 240);
+  --input-text: rgba(100, 116, 139, 0.7);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,6 +24,9 @@
     --foreground: #ededed;
     --text: #fff;
     --violet: rgb(209, 196, 233);
+    --subtitle: rgba(255, 255, 255, 0.65);
+    --border: rgb(255, 255, 255);
+    --input-text: rgba(255, 255, 255, 0.9);
   }
 }
 
@@ -28,6 +37,9 @@
   --foreground: #ededed;
   --text: #fff;
   --violet: rgb(209, 196, 233);
+  --subtitle: rgba(255, 255, 255, 0.65);
+  --border: rgba(255, 255, 255, 0.9);
+  --input-text: rgba(255, 255, 255, 0.9);
 }
 
 @theme inline {
@@ -40,6 +52,12 @@
   --color-text: var(--text);
   --color-button-violet-bg: var(--button-violet-bg);
   --color-button-violet: var(--button-violet);
+  --color-button-2-bg: var(--button-2-bg);
+  --color-button-2-bg-hover: var(--button-2-bg-hover);
+  --color-title: var(--title);
+  --color-subtitle: var(--subtitle);
+  --color-border: var(--border);
+  --color-input-text: var(--input-text);
 }
 
 body {
@@ -55,10 +73,30 @@ body {
   @apply p-[10px] rounded-[39px] bg-button-violet-bg text-button-violet text-[16px] font-[600] leading-[20px] text-center cursor-pointer hover:text-white;
 }
 
+.button-2 {
+  @apply rounded-[6px] bg-button-2-bg hover:bg-button-2-bg-hover text-white text-[14px] font-[500] leading-[20px] p-[8px] cursor-pointer;
+}
+
 .gear {
   animation: spin 2s linear infinite paused;
 }
 
 .gear:hover {
   animation-play-state: running;
+}
+
+.title {
+  @apply text-title text-[36px] font-[600] leading-[40px];
+}
+
+.subtitle {
+  @apply text-subtitle text-[14px] font-[300] leading-[20px];
+}
+
+.label {
+  @apply text-text text-[14px] font-[500] leading-[14px];
+}
+
+.input {
+  @apply border border-border rounded-[6px] shadow-[#fff/0px/1px/2px/0px] text-input-text text-[14px] font-[400] leading-[17px];
 }

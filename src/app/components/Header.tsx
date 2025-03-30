@@ -7,7 +7,7 @@ import DarkModeSwitcher from "@/app/components/DarkModeSwitcher";
 export default function Header() {
 
   return (
-    <header className={'px-[80px] flex gap-[70px]'}>
+    <header className={'px-[80px] flex gap-[70px] mb-[32px]'}>
       <Link href="/">
         <div
           className={'logo'}>
