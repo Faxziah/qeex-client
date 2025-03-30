@@ -2,7 +2,7 @@ import React from "react";
 import Image from 'next/image';
 import ConnectButton from "@/app/components/ConnectButton";
 import Link from 'next/link';
-
+import DarkModeSwitcher from "@/app/components/DarkModeSwitcher";
 
 export default function Header() {
 
@@ -25,7 +25,7 @@ export default function Header() {
           <ul className={'flex flex-wrap items-center gap-[40px]'}>
             <li><span>Создание контракта</span>
               <ul>
-                <Link href="/create">
+                <Link href="/create/simple-contract">
                   <li>Создание простого контракта</li>
                 </Link>
               </ul>
@@ -40,6 +40,7 @@ export default function Header() {
         </nav>
         <div className={'flex items-center gap-[32px] pr-[32px]'}>
           <ConnectButton/>
+          <DarkModeSwitcher/>
           {/*<div className={'button'}>REGISTER</div>*/}
           {/*<Image*/}
           {/*  src="/svg/settings.svg"*/}

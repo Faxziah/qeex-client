@@ -3,7 +3,7 @@
 
 :root {
   --background: #ffffff;
-  --subnav-bg: #fff;
+  --subnav-bg: #ffefef;
   --foreground: #171717;
   --text: #000;
   --violet: rgb(145, 104, 246);
@@ -11,7 +11,7 @@
   --button-violet: rgb(101, 31, 255);
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background: rgb(48, 48, 48);
     --subnav-bg: rgb(66, 66, 66);
@@ -19,6 +19,15 @@
     --text: #fff;
     --violet: rgb(209, 196, 233);
   }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+.dark:root {
+  --background: rgb(48, 48, 48);
+  --subnav-bg: rgb(66, 66, 66);
+  --foreground: #ededed;
+  --text: #fff;
+  --violet: rgb(209, 196, 233);
 }
 
 @theme inline {
@@ -34,8 +43,7 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  @apply bg-background text-foreground;
   font-family: Arial, Helvetica, sans-serif;
 }
 

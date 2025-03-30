@@ -10,9 +10,15 @@
     @apply relative;
 }
 
-.nav > ul > li, .nav > ul > a > li, .underline-violet {
+.nav > ul > li, .nav > ul > a > li {
     @apply cursor-pointer pt-[8px] px-[16px] pb-[24px];
 
+    @variant hover {
+        @apply text-violet underline decoration-5 underline-offset-[11px];
+    }
+}
+
+.nav > ul > li, .nav > ul > a > li, .underline-violet {
     @variant hover {
         @apply text-violet underline decoration-5 underline-offset-[11px];
     }

@@ -1,8 +1,7 @@
 "use client";
 
-import React, {useEffect} from "react";
+import React from "react";
 import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection";
-
 
 export default function ConnectButton() {
   const {isConnected, connect} = useMetaMaskConnection();
@@ -11,7 +10,7 @@ export default function ConnectButton() {
     <div>
       <button
         type="button"
-        className={"text underline-violet"}
+        className={"text underline-violet cursor-pointer pt-[8px] px-[16px] pb-[24px]"}
         onClick={connect}
       >
         {isConnected ? "Подключено" : "Подключить кошелек"}
