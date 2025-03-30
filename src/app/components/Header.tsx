@@ -7,7 +7,7 @@ import DarkModeSwitcher from "@/app/components/DarkModeSwitcher";
 export default function Header() {
 
   return (
-    <header className={'px-[80px] flex gap-[70px] mb-[32px]'}>
+    <header className={'header'}>
       <Link href="/">
         <div
           className={'logo'}>
@@ -23,19 +23,16 @@ export default function Header() {
       <div className={'flex flex-wrap justify-between w-full'}>
         <nav className={'nav text pt-[24px] pb-[16px] flex pr-[80px]'}>
           <ul className={'flex flex-wrap items-center gap-[40px]'}>
-            <li><span>Создание контракта</span>
+            <li><span>Создание смарт-контракта</span>
               <ul>
                 <Link href="/create/simple-contract">
-                  <li>Создание простого контракта</li>
+                  <li>Создание простого смарт-контракта</li>
                 </Link>
               </ul>
             </li>
             <Link href="/me">
-              <li>Мои контракты</li>
+              <li>Мои смарт-контракты</li>
             </Link>
-            {/*<li>Develop</li>*/}
-            {/*<li>Community</li>*/}
-            {/*<li>Blog</li>*/}
           </ul>
         </nav>
         <div className={'flex items-center gap-[32px] pr-[32px]'}>

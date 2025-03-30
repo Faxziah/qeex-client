@@ -32,14 +32,14 @@ export default function DarkModeSwitcher() {
       onClick={toggleMode}
     >
       <Image
-        src="/svg/lightMode.svg"
+        src="/svg/light-mode.svg"
         width={32}
         height={32}
         alt="Light mode"
         className={theme === "dark" ? "" : "hidden"}
       />
       <Image
-        src="/svg/darkMode.svg"
+        src="/svg/dark-mode.svg"
         width={32}
         height={32}
         alt="Dark mode"

@@ -1,0 +1,53 @@
+.item {
+    @apply rounded-[12px] bg-item-bg w-full py-[17px] pr-[19px] pl-[29px] flex flex-col;
+
+    @variant hover {
+        @apply bg-item-bg-hover;
+    }
+
+    h3 {
+        @apply text-text text-[16px] font-[300] leading-[24px];
+    }
+
+    .item-title {
+        @apply flex items-center;
+
+        .item-logo {
+            @apply w-[40px] h-[40px];
+        }
+
+        h3 {
+            @apply pl-[26px];
+        }
+    }
+
+
+    .item-info {
+        @apply pl-[66px] pt-[16px] flex;
+
+
+        .item-description {
+            @apply grow-[0.5];
+
+            h4 {
+                @apply text-text text-[16px] font-[600] leading-[24px] pb-[8px];
+            }
+
+            h5 {
+                @apply text-link-like text-[12px] font-[400] leading-[18px] pb-[16px];
+            }
+        }
+
+        .item-preview {
+            @apply text-text pl-[100px] grow-1 cursor-pointer;
+        }
+
+        .item-tools {
+            @apply pr-[36px];
+
+            img {
+                @apply cursor-pointer;
+            }
+        }
+    }
+}

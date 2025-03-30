@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/header.css";
+@import "../styles/item.css";
 
 :root {
   --background: #ffffff;
@@ -15,6 +16,9 @@
   --subtitle: rgb(75, 85, 99);
   --border: rgb(226, 232, 240);
   --input-text: rgba(100, 116, 139, 0.7);
+  --item-bg: rgb(241, 245, 249);
+  --item-bg-hover: rgb(237, 237, 237);
+  --link-like: rgb(18, 98, 255);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +31,7 @@
     --subtitle: rgba(255, 255, 255, 0.65);
     --border: rgb(255, 255, 255);
     --input-text: rgba(255, 255, 255, 0.9);
+    --item-bg: rgb(66, 66, 66);
   }
 }
 
@@ -40,6 +45,7 @@
   --subtitle: rgba(255, 255, 255, 0.65);
   --border: rgba(255, 255, 255, 0.9);
   --input-text: rgba(255, 255, 255, 0.9);
+  --item-bg: rgb(66, 66, 66);
 }
 
 @theme inline {
@@ -58,6 +64,9 @@
   --color-subtitle: var(--subtitle);
   --color-border: var(--border);
   --color-input-text: var(--input-text);
+  --color-item-bg: var(--item-bg);
+  --color-item-bg-hover: var(--item-bg-hover);
+  --color-link-like: var(--link-like);
 }
 
 body {
@@ -79,14 +88,14 @@ body {
 
 .gear {
   animation: spin 2s linear infinite paused;
-}
 
-.gear:hover {
-  animation-play-state: running;
+  @variant hover {
+    animation-play-state: running;
+  }
 }
 
 .title {
-  @apply text-title text-[36px] font-[600] leading-[40px];
+  @apply text-title text-[36px] font-[600] leading-[40px] pb-[18px];
 }
 
 .subtitle {
@@ -99,4 +108,8 @@ body {
 
 .input {
   @apply border border-border rounded-[6px] shadow-[#fff/0px/1px/2px/0px] text-input-text text-[14px] font-[400] leading-[17px];
+}
+
+.items-list {
+  @apply flex flex-col gap-[34px] w-full py-[34px] px-[71px];
 }

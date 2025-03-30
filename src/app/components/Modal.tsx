@@ -2,6 +2,7 @@
 
 import React, {useEffect} from "react";
 import Image from "next/image";
+import {voidFunction} from "@/app/helpers/voidFunction";
 
 interface ModalProps {
   isOpen: boolean;
@@ -69,15 +70,15 @@ export default function Modal({isOpen, title, type, onCloseAction, onConfirmActi
             </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-            {onConfirmAction && (
+            {onConfirmAction && onConfirmAction !== voidFunction ? (
               <button onClick={onConfirmAction} type="button"
-                      className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto">
-                Deactivate
+                      className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-green-500 sm:ml-3 sm:w-auto cursor-pointer">
+                Подтвердить
               </button>
-            )}
+            ) : null}
             <button onClick={onCloseAction} type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto">
-              Cancel
+                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto cursor-pointer">
+              Отмена
             </button>
           </div>
         </div>

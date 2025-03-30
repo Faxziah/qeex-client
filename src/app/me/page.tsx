@@ -2,12 +2,11 @@
 
 import {useState, useEffect} from "react";
 
-import ConnectButton from "@/app/components/ConnectButton";
 import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection";
 import {_getUserContracts} from "@/app/me/services/_getUserContracts";
 import Contract from "@/app/me/components/Contract";
 import {IContract} from "@/app/me/interface/IContract";
-
+import Link from 'next/link';
 
 export default function Home() {
   const {isConnected} = useMetaMaskConnection();
@@ -32,14 +31,18 @@ export default function Home() {
     <div>
       <main>
         <div className="flex flex-col items-center">
-          <h1
-            className="text-4xl font-extrabold dark:text-white">Мои контракты</h1>
-          {!isConnected ? <button>Загрузить мои контракты</button> : null}
+          <h2 className={'title'}>Мои смарт-контракты</h2>
+
+          {!isConnected ?
+            <p className={'mt-[76px] text-[20px]'}>Для загрузки смарт-контрактов нужно подключить кошелек</p> : null}
 
           {isConnected && !contracts.length ? (
-            <button>Контрактов еще нет. Создайте свой первый контракт</button>
+
+            <Link href="/create/simple-contract" className={'mt-[76px] text-[20px] hover:text-gray-400'}>Смарт-контрактов
+              еще нет. Создайте
+              свой первый смарт-контракт</Link>
           ) : (
-            <div className={`flex flex-wrap gap-x-16 gap-y-8 px-40 py-20`}>
+            <div className={`flex flex-wrap gap-x-16 gap-y-8 px-40 py-20 items-list`}>
               {contracts.map((contract: IContract) => (
                 <Contract key={contract.id} {...contract}/>
               ))}

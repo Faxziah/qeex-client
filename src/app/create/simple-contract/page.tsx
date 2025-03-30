@@ -32,12 +32,12 @@ export default function Home() {
   return (
     <div>
       <div className={'flex flex-col items-center'}>
-        <h2 className={'title'}>Создайте контракт</h2>
-        <p className={'subtitle pt-[18px]'}>Контракт с Вашим уникальным текстом будет сохранен в сети блокчейн
+        <h2 className={'title'}>Создайте смарт-контракт</h2>
+        <p className={'subtitle'}>Смарт-контракт с Вашим уникальным текстом будет сохранен в сети блокчейн
           навечно</p>
         <form onSubmit={createContract} className={'flex flex-col pt-[18px] w-[500px]'}>
           <label htmlFor="contract_text" className={'label'}>
-            Текст контракта
+            Текст смарт-контракта
           </label>
           <textarea
             id="contract_text"
@@ -45,7 +45,7 @@ export default function Home() {
             rows={7}
             className={'input mt-[10px] px-[10px] py-[12px]'}
           />
-          <button className={'button-2 mt-[18px]'}>Создать контракт</button>
+          <button className={'button-2 mt-[18px]'}>Создать смарт-контракт</button>
         </form>
       </div>
     </div>
