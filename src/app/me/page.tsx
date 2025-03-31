@@ -5,7 +5,7 @@ import {useState, useEffect} from "react";
 import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection";
 import {_getUserContracts} from "@/app/me/services/_getUserContracts";
 import Contract from "@/app/me/components/Contract";
-import {IContract} from "@/app/me/interface/IContract";
+import {IContract} from "@/app/interface/IContract";
 import Link from 'next/link';
 
 export default function Home() {
@@ -44,7 +44,7 @@ export default function Home() {
           ) : (
             <div className={`flex flex-wrap gap-x-16 gap-y-8 px-40 py-20 items-list`}>
               {contracts.map((contract: IContract) => (
-                <Contract key={contract.id} {...contract}/>
+                <Contract key={contract.id} contract={contract}/>
               ))}
             </div>
           )}

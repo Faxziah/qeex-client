@@ -1,7 +1,7 @@
 @import "tailwindcss";
-@import "../styles/header.css";
-@import "../styles/footer.css";
-@import "../styles/item.css";
+@import "./styles/header.css";
+@import "./styles/footer.css";
+@import "./styles/item.css";
 
 :root {
   --background: #ffffff;
@@ -9,10 +9,12 @@
   --foreground: #171717;
   --text: #000;
   --violet: rgb(145, 104, 246);
-  --button-violet-bg: rgb(209, 196, 233);
   --button-violet: rgb(101, 31, 255);
+  --button-violet-bg: rgb(209, 196, 233);
   --button-2-bg: rgb(18, 98, 255);
   --button-2-bg-hover: rgb(0, 70, 255);
+  --button-green: rgb(16, 185, 129);
+  --button-green-border: rgb(16, 185, 129);
   --title: rgb(18, 98, 255);
   --subtitle: rgb(75, 85, 99);
   --border: rgb(226, 232, 240);
@@ -34,6 +36,7 @@
   --border: rgba(255, 255, 255, 0.9);
   --input-text: rgba(255, 255, 255, 0.9);
   --item-bg: rgb(66, 66, 66);
+  --item-bg-hover: rgb(83, 83, 83);
 }
 
 .dark .svg {
@@ -60,6 +63,8 @@
   --color-item-bg-hover: var(--item-bg-hover);
   --color-link-like: var(--link-like);
   --color-social-media-bg: var(--social-media-bg);
+  --color-button-green-border: var(--button-green-border);
+  --color-button-green: var(--button-green);
 }
 
 body {

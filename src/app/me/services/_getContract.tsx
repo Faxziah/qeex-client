@@ -1,7 +1,7 @@
 'use client';
 
 import {ethers} from "ethers";
-import {IEverlastingContract} from "@/app/me/interface/IEverlastingContract";
+import {IEverlastingContract} from "@/app/interface/IEverlastingContract";
 
 export async function _getContract(contractAddress: string): Promise<string | undefined> {
   if (!window.ethereum) {

@@ -10,6 +10,7 @@ export async function _createContract(contractText: string) {
 
   const provider = new ethers.BrowserProvider(window.ethereum);
   const signer = await provider.getSigner();
+  const walletAddress = await signer.getAddress();
 
   const everlastingContractAbi = await fetch("/contracts/EverlastingContract.sol/EverlastingContract.json");
   const {abi: contractAbi, bytecode: contractBytecode} = await everlastingContractAbi.json();
@@ -26,7 +27,16 @@ export async function _createContract(contractText: string) {
 
   console.log('After deploying contract');
 
-  const walletAddress = await signer.getAddress();
+  const tx = contract.deploymentTransaction();
+
+  let blockNumber;
+  if (tx != null) {
+    const receipt = await tx.wait();
+
+    if (receipt != null) {
+      blockNumber = receipt.blockNumber;
+    }
+  }
 
   const network = await provider.getNetwork();
   const chainId = network.chainId;
@@ -34,7 +44,8 @@ export async function _createContract(contractText: string) {
   const data = {
     contractAddress: contract.target,
     walletAddress: walletAddress,
-    chainId: Number(chainId)
+    chainId: Number(chainId),
+    blockNumber: blockNumber
   };
 
   const response = await fetch("/api/contracts/create", {

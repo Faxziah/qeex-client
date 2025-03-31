@@ -1,4 +1,5 @@
 import {NextResponse} from "next/server";
+import {ContractStatus} from "@/app/interface/IContract";
 
 export async function POST(req: Request) {
   try {
@@ -7,7 +8,9 @@ export async function POST(req: Request) {
     const data = {
       contractAddress: request.contractAddress,
       walletAddress: request.walletAddress,
-      chainId: request.chainId
+      chainId: request.chainId,
+      blockNumber: request.blockNumber,
+      status: ContractStatus.NEW
     };
 
     const response = await fetch(process.env.BACKEND_URL + "/api/contracts/create", {

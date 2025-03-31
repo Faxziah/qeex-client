@@ -17,10 +17,13 @@
         }
 
         h3 {
-            @apply pl-[26px];
+            @apply pl-[26px] grow-1;
+        }
+
+        .item-status {
+            @apply mr-[36px] p-[6px] border border-button-green-border text-button-green rounded-[8px] text-[12px] font-[600] leading-[15px]
         }
     }
-
 
     .item-info {
         @apply pl-[66px] pt-[16px] flex;

@@ -37,18 +37,31 @@ export default function Modal({isOpen, title, type, onCloseAction, onConfirmActi
     };
   }, [isOpen, onCloseAction]);
 
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onCloseAction();
+    }
+  };
+
   if (!isOpen) {
     return null;
   }
 
   return (
     <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div className="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true" onClick={onCloseAction}></div>
+      <div className="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
 
-      <div className="fixed inset-0 z-10 w-screen overflow-y-auto flex items-center justify-center p-4">
+      <div className="fixed inset-0 z-10 w-screen overflow-y-auto flex items-center justify-center p-4"
+           onClick={handleOverlayClick}>
         <div
           className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-1/2">
-          <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+          <div className="absolute top-4 right-4 cursor-pointer" onClick={onCloseAction}>
+            <svg className="w-6 h-6 text-gray-500 hover:text-gray-800 mr-[15px]" fill="none" stroke="currentColor"
+                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          <div className="bg-white px-4 pt-5 pb-[40px] max-h-[60vh] overflow-y-scroll">
             <div className="sm:flex sm:items-start">
               <div
                 className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full sm:mx-0 sm:size-10">
