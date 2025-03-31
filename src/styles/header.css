@@ -1,8 +1,8 @@
-header {
-    @apply px-[80px] flex gap-[70px] mb-[32px];
+.header {
+    @apply flex gap-[70px] mb-[32px];
 
     .logo {
-        @apply pt-[24px] pb-[24px] pl-[32px] flex items-center gap-[8px] cursor-pointer whitespace-nowrap size-max;
+        @apply pt-[24px] pb-[24px] flex items-center gap-[8px] cursor-pointer whitespace-nowrap size-max;
     }
 
     .logo-text {

@@ -44,7 +44,7 @@ export default function Header() {
           {/*  width={24}*/}
           {/*  height={24}*/}
           {/*  alt="Settings"*/}
-          {/*  className={'cursor-pointer gear'}*/}
+          {/*  className={'cursor-pointer gear svg'}*/}
           {/*/>*/}
         </div>
       </div>

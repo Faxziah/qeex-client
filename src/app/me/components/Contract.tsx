@@ -25,6 +25,7 @@ export default function Contract({id, chain_id, address, created_at}: IContract)
             width={40}
             height={40}
             alt="Simple contract icon"
+            className={'svg'}
           />
         </div>
         <h3>Смарт-контракт блока № {id}</h3>
@@ -32,7 +33,7 @@ export default function Contract({id, chain_id, address, created_at}: IContract)
       <div className={'item-info'}>
         <div className={'item-description'}>
           <h4>Сеть № {chain_id}</h4>
-          <h5>Адрес собственника: {address}</h5>
+          <h5>Адрес владельца: {address}</h5>
           <h4>Адрес смарт-контракта: {address}</h4>
           <h3>Дата создания: {formatDateDMYHI(created_at)}</h3>
         </div>
@@ -46,6 +47,7 @@ export default function Contract({id, chain_id, address, created_at}: IContract)
             height={15}
             alt="Show contract"
             onClick={() => getContract(address)}
+            className={'svg'}
           />
         </div>
       </div>

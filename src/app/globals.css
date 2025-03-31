@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/header.css";
+@import "../styles/footer.css";
 @import "../styles/item.css";
 
 :root {
@@ -19,20 +20,7 @@
   --item-bg: rgb(241, 245, 249);
   --item-bg-hover: rgb(237, 237, 237);
   --link-like: rgb(18, 98, 255);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: rgb(48, 48, 48);
-    --subnav-bg: rgb(66, 66, 66);
-    --foreground: #ededed;
-    --text: #fff;
-    --violet: rgb(209, 196, 233);
-    --subtitle: rgba(255, 255, 255, 0.65);
-    --border: rgb(255, 255, 255);
-    --input-text: rgba(255, 255, 255, 0.9);
-    --item-bg: rgb(66, 66, 66);
-  }
+  --social-media-bg: rgba(18, 98, 255, 0.1);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -46,6 +34,10 @@
   --border: rgba(255, 255, 255, 0.9);
   --input-text: rgba(255, 255, 255, 0.9);
   --item-bg: rgb(66, 66, 66);
+}
+
+.dark .svg {
+  @apply invert;
 }
 
 @theme inline {
@@ -67,6 +59,7 @@
   --color-item-bg: var(--item-bg);
   --color-item-bg-hover: var(--item-bg-hover);
   --color-link-like: var(--link-like);
+  --color-social-media-bg: var(--social-media-bg);
 }
 
 body {
@@ -103,7 +96,7 @@ body {
 }
 
 .label {
-  @apply text-text text-[14px] font-[500] leading-[14px];
+  @apply text-text text-[14px] font-[600] leading-[14px];
 }
 
 .input {
