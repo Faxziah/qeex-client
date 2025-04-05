@@ -71,7 +71,6 @@ export default function Modal({isOpen, title, type, onCloseAction, onConfirmActi
                     width={32}
                     height={32}
                     alt="Modal icon"
-                    className={'svg'}
                   />
                   : null}
               </div>

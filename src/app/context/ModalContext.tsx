@@ -13,6 +13,13 @@ interface ModalContextProps {
     onConfirmAction?: () => void,
     dangerouslySetInnerHTML?: boolean,
   ) => void;
+
+  showModalError: (
+    content?: ReactNode,
+    onCloseAction?: () => void,
+    onConfirmAction?: () => void,
+    dangerouslySetInnerHTML?: boolean,
+  ) => void;
 }
 
 const ModalContext = createContext<ModalContextProps | undefined>(undefined);
@@ -43,6 +50,21 @@ export function ModalProvider({children}: { children: ReactNode }) {
     setType(type);
   }
 
+  function showModalError(
+    content?: ReactNode,
+    onCloseAction?: () => void,
+    onConfirmAction?: () => void,
+    dangerouslySetInnerHTML: boolean = false,
+  ) {
+    setTitle('Ошибка');
+    setContent(content);
+    setOnCloseAction(() => onCloseAction);
+    setOnConfirmAction(() => onConfirmAction);
+    setIsOpen(true);
+    setDangerouslySetInnerHTML(dangerouslySetInnerHTML);
+    setType('error');
+  }
+
   function closeModal() {
     if (onCloseAction) {
       onCloseAction();
@@ -57,7 +79,7 @@ export function ModalProvider({children}: { children: ReactNode }) {
   }
 
   return (
-    <ModalContext.Provider value={{showModal}}>
+    <ModalContext.Provider value={{showModal, showModalError}}>
       {children}
       <Modal isOpen={isOpen} title={title} type={type} onCloseAction={closeModal} onConfirmAction={onConfirmAction}>
         {dangerouslySetInnerHTML ? <div dangerouslySetInnerHTML={{__html: content as string}}/> : content}

@@ -1,0 +1,1 @@
+export const BASE_FEE_IN_DOLLARS = 1; // Комиссия в $

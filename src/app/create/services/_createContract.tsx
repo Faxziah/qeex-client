@@ -1,6 +1,8 @@
 'use client';
 
 import {BaseContract, ethers} from "ethers";
+import {SIMPLE_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
+import {CREATE_CONTRACT_URL} from "@/app/constants/backendUrl";
 
 export async function _createContract(contractText: string) {
   if (!window.ethereum) {
@@ -12,14 +14,20 @@ export async function _createContract(contractText: string) {
   const signer = await provider.getSigner();
   const walletAddress = await signer.getAddress();
 
-  const everlastingContractAbi = await fetch("/contracts/EverlastingContract.sol/EverlastingContract.json");
+  const everlastingContractAbi = await fetch(SIMPLE_CONTRACT_TEMPLATE_PATH);
   const {abi: contractAbi, bytecode: contractBytecode} = await everlastingContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
 
   console.log('Before creating contract');
 
-  const contract: BaseContract = await contractFactory.deploy(contractText);
+  let contract: BaseContract;
+
+  try {
+    contract = await contractFactory.deploy(contractText);
+  } catch (e: unknown) {
+    return;
+  }
 
   console.log('After creating contract');
 
@@ -48,7 +56,7 @@ export async function _createContract(contractText: string) {
     blockNumber: blockNumber
   };
 
-  const response = await fetch("/api/contracts/create", {
+  const response = await fetch(CREATE_CONTRACT_URL, {
     method: "POST",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(data),

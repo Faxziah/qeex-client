@@ -17,3 +17,8 @@ export enum ContractStatus {
   WAIT_DEPLOYMENT = "wait_deployment",
   DEPLOYED = "deployed",
 }
+
+export interface TransactionFeeInfo {
+  fee: number;
+  blockchainFee: number;
+}

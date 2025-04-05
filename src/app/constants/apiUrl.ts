@@ -1,0 +1,1 @@
+export const COINGECKO_ETH_USD = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd';

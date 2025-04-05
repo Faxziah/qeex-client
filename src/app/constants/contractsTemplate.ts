@@ -1,0 +1,1 @@
+export const SIMPLE_CONTRACT_TEMPLATE_PATH = '/contracts/EverlastingContract.sol/EverlastingContract.json';

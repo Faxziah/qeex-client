@@ -1,0 +1,1 @@
+export const CREATE_CONTRACT_URL = '/api/contracts/create';

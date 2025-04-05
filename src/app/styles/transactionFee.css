@@ -1,0 +1,11 @@
+.transaction-fee {
+    @apply flex justify-center text-text;
+
+    div {
+        @apply flex flex-col items-stretch pt-[18px] w-[500px];
+
+        .transaction-fee-row {
+            @apply flex justify-between flex-row;
+        }
+    }
+}
