@@ -7,7 +7,8 @@ import {formatDateDMYHI} from "@/app/helpers/formatDate";
 import {useModal} from "@/app/context/ModalContext";
 import {voidFunction} from "@/app/helpers/voidFunction";
 import Image from "next/image";
-import {ChainsName} from "@/app/interface/Chains";
+import {Chains} from "@/app/interface/Chains";
+import Link from 'next/link';
 
 export default function Contract({contract}: { contract: IContract }) {
   const {showModal} = useModal();
@@ -34,10 +35,21 @@ export default function Contract({contract}: { contract: IContract }) {
       </div>
       <div className={'item-info'}>
         <div className={'item-description'}>
-          <h4>Сеть {ChainsName[contract.chain_id] ?? 'Неизвестно'}</h4>
+          <h4>Сеть {Chains[contract.chain_id].name ?? 'Неизвестно'}</h4>
           <h5>Адрес владельца: {contract.user.address}</h5>
-          <h4>Адрес смарт-контракта: {contract.address}</h4>
           <h3>Дата создания: {formatDateDMYHI(contract.created_at)}</h3>
+
+          {Chains[contract.chain_id].explorerUrl ? (
+
+            <Link
+              href={`${Chains[contract.chain_id].explorerUrl}address/${contract.address}`}
+              target={'_blank'}
+              className={'pt-[16px] inline-block'}>
+              <button className={'button-2'}>Адрес смарт-контракта: {contract.address}</button>
+            </Link>
+          ) : (
+            <h4>Адрес смарт-контракта: {contract.address}</h4>
+          )}
         </div>
         <div className={'item-preview'} onClick={() => getContract(contract.address)}>
           <p>Нажмите для просмотра текста смарт-контракта</p>

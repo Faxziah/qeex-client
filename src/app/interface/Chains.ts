@@ -7,11 +7,41 @@ export enum ChainId {
   ARBITRUM = 42161,
 }
 
-export const ChainsName: Record<number, string> = {
-  [ChainId.ETHEREUM]: "Ethereum Mainnet",
-  [ChainId.BSC]: "Binance Smart Chain",
-  [ChainId.POLYGON]: "Polygon",
-  [ChainId.HARDHAT]: "Hardhat",
-  [ChainId.MUMBAI]: "Mumbai Testnet",
-  [ChainId.ARBITRUM]: "Arbitrum One",
+interface Chain {
+  chainId: number;
+  name: string;
+  explorerUrl: string
+}
+
+export const Chains: Record<number, Chain> = {
+  [ChainId.ETHEREUM]: {
+    chainId: ChainId.ETHEREUM,
+    name: "Ethereum Mainnet",
+    explorerUrl: "https://etherscan.io/",
+  },
+  [ChainId.BSC]: {
+    chainId: ChainId.BSC,
+    name: "Binance Smart Chain",
+    explorerUrl: "https://bscscan.com/",
+  },
+  [ChainId.POLYGON]: {
+    chainId: ChainId.POLYGON,
+    name: "Polygon",
+    explorerUrl: "https://polygonscan.com/",
+  },
+  [ChainId.HARDHAT]: {
+    chainId: ChainId.HARDHAT,
+    name: "Hardhat",
+    explorerUrl: "https://etherscan.io/",
+  },
+  [ChainId.MUMBAI]: {
+    chainId: ChainId.MUMBAI,
+    name: "Mumbai Testnet",
+    explorerUrl: "https://mumbai.polygonscan.com/",
+  },
+  [ChainId.ARBITRUM]: {
+    chainId: ChainId.ARBITRUM,
+    name: "Arbitrum One",
+    explorerUrl: "https://arbiscan.io/",
+  },
 };
