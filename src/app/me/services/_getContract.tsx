@@ -2,6 +2,7 @@
 
 import {ethers} from "ethers";
 import {IEverlastingContract} from "@/app/interface/IEverlastingContract";
+import {EVERLASTING_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 
 export async function _getContract(contractAddress: string): Promise<string | undefined> {
   if (!window.ethereum) {
@@ -12,7 +13,7 @@ export async function _getContract(contractAddress: string): Promise<string | un
   const provider = new ethers.BrowserProvider(window.ethereum);
   const signer = await provider.getSigner();
 
-  const everlastingContractAbi = await fetch("/contracts/EverlastingContract.sol/EverlastingContract.json");
+  const everlastingContractAbi = await fetch(EVERLASTING_CONTRACT_TEMPLATE_PATH);
   const {abi: contractAbi} = await everlastingContractAbi.json();
 
   const contract = new ethers.Contract(contractAddress, contractAbi, signer) as unknown as IEverlastingContract;

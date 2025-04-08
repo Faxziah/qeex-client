@@ -2,9 +2,9 @@
 
 import {ethers} from "ethers";
 import {TransactionFeeInfo} from "@/app/interface/IContract";
-import {BASE_FEE_IN_DOLLARS} from "@/app/constants/constants";
+import {BASE_FEE_IN_USD} from "@/app/constants/constants";
 import {COINGECKO_ETH_USD} from "@/app/constants/apiUrl";
-import {SIMPLE_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
+import {EVERLASTING_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 
 export async function _getCreateContractInfo(contractText: string): Promise<TransactionFeeInfo | undefined> {
   if (!window.ethereum) {
@@ -23,7 +23,7 @@ export async function _getCreateContractInfo(contractText: string): Promise<Tran
     throw new Error('Некорректная цена газа');
   }
 
-  const everlastingContractAbi = await fetch(SIMPLE_CONTRACT_TEMPLATE_PATH);
+  const everlastingContractAbi = await fetch(EVERLASTING_CONTRACT_TEMPLATE_PATH);
   const {abi: contractAbi, bytecode: contractBytecode} = await everlastingContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
@@ -55,7 +55,7 @@ export async function _getCreateContractInfo(contractText: string): Promise<Tran
   console.log('Transaction fee in USD:', feeInUsd);
 
   return {
-    fee: BASE_FEE_IN_DOLLARS,
+    fee: BASE_FEE_IN_USD,
     blockchainFee: Math.round(feeInUsd * 10000) / 10000
   };
 }

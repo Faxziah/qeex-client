@@ -8,7 +8,7 @@ import {useModal} from "@/app/context/ModalContext";
 import {voidFunction} from "@/app/helpers/voidFunction";
 import Image from "next/image";
 import Link from 'next/link';
-import {Chains} from "@/app/constants/Chains";
+import {Chains} from "@/app/constants/chains";
 
 export default function Contract({contract}: { contract: IContract }) {
   const {showModal} = useModal();
@@ -17,8 +17,6 @@ export default function Contract({contract}: { contract: IContract }) {
     const contractText: string | undefined = await _getContract(contractAddress);
     showModal(`Смарт-контракт ${contract.address}`, contractText ?? '', undefined, voidFunction, voidFunction, true);
   }
-
-  // TODO 2. изменить, чтобы сначала передавались деньги себе на кошелек (в крипте а не рублях) и потом сохранять этот флаг в БД, 3. улучшить шаблон для мобильной версии 6. протестировать на Sepolia и посмотреть сколько газа берется и его цена 4. протестировать на arbitrum 5. показать сайт и выложить 6. Добавить создание ERC-20/nft
 
   return (
     <div className={'item'}>

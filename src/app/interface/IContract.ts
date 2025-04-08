@@ -16,6 +16,7 @@ export enum ContractStatus {
   PAID = "paid",
   WAIT_DEPLOYMENT = "wait_deployment",
   DEPLOYED = "deployed",
+  ERROR = "error",
 }
 
 export interface TransactionFeeInfo {
