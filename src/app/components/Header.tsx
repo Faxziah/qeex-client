@@ -23,7 +23,8 @@ export default function Header() {
       <div className={'flex flex-wrap justify-between w-full'}>
         <nav className={'nav text pt-[24px] pb-[16px] flex pr-[80px]'}>
           <ul className={'flex flex-wrap items-center gap-[40px]'}>
-            <li><span>Создание смарт-контракта</span>
+            <li>
+              <Link href="/create">Создание смарт-контракта</Link>
               <ul>
                 <Link href="/create/simple-contract">
                   <li>Создание простого смарт-контракта</li>
@@ -36,7 +37,9 @@ export default function Header() {
           </ul>
         </nav>
         <div className={'flex items-center gap-[32px] pr-[32px]'}>
-          <ConnectButton/>
+          <div className={'px-[16px]'}>
+            <ConnectButton/>
+          </div>
           <DarkModeSwitcher/>
           {/*<div className={'button'}>REGISTER</div>*/}
           {/*<Image*/}

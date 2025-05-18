@@ -1,0 +1,75 @@
+.banner {
+    .banner__container {
+        @apply flex gap-[128px] flex-wrap items-center flex-col;
+
+        .banner-text-image__container {
+            @apply flex gap-[32px];
+
+            .banner-text__container {
+                @apply flex flex-col gap-[32px] basis-[50%];
+
+                .banner__title {
+                    span {
+                        @apply font-[800] text-[64px] leading-[78px];
+                        background: linear-gradient(152.08deg, rgb(178, 235, 242), rgb(209, 196, 233), rgb(248, 187, 208));
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                    }
+                }
+
+                .banner-buttons__container {
+                    @apply flex gap-[32px] mt-[8px];
+                }
+            }
+
+            .banner-image__container {
+                @apply basis-[50%] flex justify-center relative;
+
+                .banner-image {
+                    @apply scale-[2] -z-10;
+                }
+            }
+        }
+
+        .banner-slides__container {
+            @apply flex justify-between w-[80%] rounded-[24px] backdrop-blur-[27.18px] bg-overlay gap-[16px];
+
+            .banner-slide {
+                @apply py-[18px] px-[12px] cursor-pointer basis-[20%] box-border;
+
+                h3 {
+                    @apply font-[600] text-[28px] leading-[42px];
+                }
+
+                h4 {
+                    @apply pt-[8px] pb-[24px] font-[400] text-[18px] leading-[24px];
+
+                    button {
+                        @apply text-left;
+                    }
+
+                    button:hover {
+                        @apply text-title;
+                    }
+                }
+
+                h4:hover {
+                    @apply text-title;
+                }
+            }
+
+            .banner-slide:hover {
+                @apply pr-0;
+            }
+
+            .banner-slide:hover h3 {
+                @apply text-button-3-text;
+            }
+
+            .banner-slide:hover h3::before {
+                @apply content-[''] inline-block mr-[8px] w-[20px] h-[20px] rounded-full bg-button-3-bg;
+            }
+        }
+    }
+}

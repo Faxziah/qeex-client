@@ -67,23 +67,26 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <div className={'flex flex-col items-center'}>
-        <h2 className={'title'}>Создайте смарт-контракт</h2>
-        <p className={'subtitle'}>Смарт-контракт с Вашим уникальным текстом будет сохранен в сети блокчейн
-          навечно</p>
-        <form onSubmit={createContract} className={'flex flex-col pt-[18px] w-[500px]'}>
-          <label htmlFor="contract_text" className={'label'}>
+    <div className="simple-contract">
+      <div className="simple-contract__container">
+        <h2 className="title">Создайте смарт-контракт</h2>
+        <p className="subtitle">
+          Смарт-контракт с Вашим уникальным текстом будет сохранен в сети блокчейн навечно
+        </p>
+        <form onSubmit={createContract} className="simple-contract__form">
+          <label htmlFor="contract_text" className="simple-contract__label">
             Текст смарт-контракта
           </label>
           <textarea
             id="contract_text"
             name="contract_text"
             rows={7}
-            className={'input mt-[10px] px-[10px] py-[12px]'}
+            className="simple-contract__textarea"
             onBlur={getCreateContractInfo}
           />
-          <button className={'button-2 mt-[18px]'}>Создать смарт-контракт</button>
+          <button type="submit" className="simple-contract__button">
+            Создать смарт-контракт
+          </button>
         </form>
       </div>
 
