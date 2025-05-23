@@ -3,6 +3,7 @@ import Image from 'next/image';
 import ConnectButton from "@/app/components/ConnectButton";
 import Link from 'next/link';
 import DarkModeSwitcher from "@/app/components/DarkModeSwitcher";
+import "@/app/styles/header.css";
 
 export default function Header() {
 

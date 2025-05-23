@@ -1,9 +1,6 @@
 @import "tailwindcss";
-@import "./styles/globals.css";
 @import "./styles/variables.css";
-@import "./styles/header.css";
-@import "./styles/footer.css";
+@import "./styles/globals.css";
 @import "./styles/item.css";
 @import "./styles/transactionFee.css";
 @import "./styles/simple-contract.css";
-@import "./styles/banner.css";

@@ -35,7 +35,6 @@ body {
     @apply text-title text-[36px] font-[600] leading-[40px] pb-[18px];
 }
 
-
 .title-2 {
     @apply text-text text-[64px] font-[800] leading-[78px];
 }
