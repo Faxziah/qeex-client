@@ -23,6 +23,8 @@
     --link-like: rgb(18, 98, 255);
     --social-media-bg: rgba(18, 98, 255, 0.1);
     --overlay: rgba(255, 255, 255, 0.57);
+    --title-underline-before-bg: linear-gradient(152.08deg, rgb(178, 235, 242) 9.051%, rgb(209, 196, 233) 63.775%, rgb(248, 187, 208) 92.794%);
+    --title-underline-after-bg: linear-gradient(152.08deg, rgb(178, 235, 242) -21.38%, rgb(209, 196, 233) 14.898%, rgb(248, 187, 208) 34.135%);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));

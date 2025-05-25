@@ -21,8 +21,9 @@ export default function Banner() {
           <div className={'banner-image-container'}>
             <Image
               src="/images/banner.png"
-              width={500} height={500}
-              alt="Logo"
+              width={500}
+              height={500}
+              alt="Banner"
               className={'banner-image'}
             />
           </div>

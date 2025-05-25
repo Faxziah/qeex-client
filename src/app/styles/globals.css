@@ -32,11 +32,38 @@ body {
 }
 
 .title {
-    @apply text-title text-[36px] font-[600] leading-[40px] pb-[18px];
+    @apply text-title text-[36px] font-[600] leading-[40px] mb-[18px];
 }
 
 .title-2 {
     @apply text-text text-[64px] font-[800] leading-[78px];
+}
+
+.title-with-underline {
+    @apply text-text text-[64px] font-[800] leading-[78px];
+
+    &::before {
+        content: "";
+        position: absolute;
+        left: calc(50% - 24px);
+        bottom: 0;
+        width: 12px;
+        height: 12px;
+        background: var(--title-underline-before-bg);
+        border-radius: 50%;
+        transform: translateX(-50%);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: 72px;
+        height: 12px;
+        background: var(--title-underline-after-bg);
+        border-radius: 30px;
+    }
 }
 
 .subtitle {
