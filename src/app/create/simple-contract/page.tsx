@@ -72,7 +72,7 @@ export default function Home() {
       <div className="simple-contract">
         <h2 className="title">Создайте смарт-контракт</h2>
         <p className="subtitle">
-          Смарт-контракт с Вашим уникальным текстом будет сохранен в сети блокчейн навечно
+          Твой смарт-контракт с уникальным текстом будет сохранен в сети блокчейн навсегда
         </p>
         <form onSubmit={createContract} className="simple-contract__form">
           <label htmlFor="contract_text" className="simple-contract__label">

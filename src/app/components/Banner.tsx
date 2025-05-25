@@ -15,7 +15,7 @@ export default function Banner() {
             <h2 className={'subtitle-2'}>Твой уникальный смарт-контракт будет сохранен в блокчейн навечно</h2>
             <div className={'banner-buttons-container'}>
               <Link className={'button-3'} href="/create/simple-contract">Создать смарт-контракт</Link>
-              <Link className={'button-transparent'} href="/create">Виды смарт-контрактов</Link>
+              <Link className={'button-transparent'} href="/#contracts-type-container">Виды смарт-контрактов</Link>
             </div>
           </div>
           <div className={'banner-image-container'}>
@@ -39,7 +39,8 @@ export default function Banner() {
           </div>
           <div className={'banner-slide'}>
             <h3>Подтвердите транзакции</h3>
-            <h4><Link href="/create">Первая транзакция - скромная комиссия сервиса, вторая - создание твоего уникального
+            <h4><Link href="/create/simple-contract">Первая транзакция - скромная комиссия сервиса, вторая - создание
+              твоего уникального
               смарт-контракта</Link></h4>
           </div>
           <div className={'banner-slide'}>
