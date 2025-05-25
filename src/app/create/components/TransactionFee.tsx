@@ -2,11 +2,12 @@
 
 import React from "react";
 import {TransactionFeeInfo} from "@/app/interface/IContract";
+import "@/app/styles/transaction-fee.css";
 
 export default function TransactionFee({transactionFee}: { transactionFee: TransactionFeeInfo }) {
   return (
-    <div className={'transaction-fee'}>
-      <div>
+    <div className={'transaction-fee-container'}>
+      <div className={'transaction-fee'}>
         <div className={'transaction-fee-row'}>
           <p>Комиссия:</p>
           <p>{transactionFee.fee}$</p>

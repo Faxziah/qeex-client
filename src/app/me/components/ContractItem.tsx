@@ -9,8 +9,9 @@ import {voidFunction} from "@/app/helpers/voidFunction";
 import Image from "next/image";
 import Link from 'next/link';
 import {Chains} from "@/app/constants/chains";
+import "@/app/styles/contract-item.css";
 
-export default function Contract({contract}: { contract: IContract }) {
+export default function ContractItem({contract}: { contract: IContract }) {
   const {showModal} = useModal();
 
   async function getContract(contractAddress: string) {
@@ -19,9 +20,9 @@ export default function Contract({contract}: { contract: IContract }) {
   }
 
   return (
-    <div className={'item'}>
-      <div className={'item-title'}>
-        <div className={'item-logo'}>
+    <div className={'contract-item'}>
+      <div className={'contract-item-title'}>
+        <div className={'contract-item-logo'}>
           <Image
             src={'/svg/simple-contract.svg'}
             width={40}
@@ -31,10 +32,10 @@ export default function Contract({contract}: { contract: IContract }) {
           />
         </div>
         <h3>Блок № {contract.block_number}</h3>
-        <div className={'item-status'}>{contract.status}</div>
+        <div className={'contract-item-status'}>{contract.status}</div>
       </div>
-      <div className={'item-info'}>
-        <div className={'item-description'}>
+      <div className={'contract-item-info'}>
+        <div className={'contract-item-description'}>
           <h4>Сеть {Chains[contract.chain_id].name ?? 'Неизвестно'}</h4>
           <h5>Адрес владельца: {contract.user.address}</h5>
           <h3>Дата создания: {formatDateDMYHI(contract.created_at)}</h3>
@@ -51,10 +52,10 @@ export default function Contract({contract}: { contract: IContract }) {
             <h4>Адрес смарт-контракта: {contract.address}</h4>
           )}
         </div>
-        <div className={'item-preview'} onClick={() => getContract(contract.address)}>
+        <div className={'contract-item-preview'} onClick={() => getContract(contract.address)}>
           <p>Нажмите для просмотра текста смарт-контракта</p>
         </div>
-        <div className={'item-tools'}>
+        <div className={'contract-item-tools'}>
           <Image
             src={'/svg/pencil.svg'}
             width={15}

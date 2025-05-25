@@ -1,18 +1,41 @@
-.simple-contract {
-    @apply w-full;
+.simple-contract-container {
+    width: 100%;
 
-    .simple-contract__container {
-        @apply flex flex-col items-center;
+    .simple-contract {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .simple-contract__form {
-            @apply flex flex-col pt-[18px] w-[500px];
+            display: flex;
+            flex-direction: column;
+            padding-top: 18px;
+            width: 500px;
 
             .simple-contract__textarea {
-                @apply mt-[10px] px-[10px] py-[12px] border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+                margin-top: 10px;
+                padding: 12px 10px;
+                border: 1px solid #d1d5db;
+                border-radius: 6px;
+
+                &:focus {
+                    outline: none;
+                    border-color: #3b82f6;
+                    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+                }
             }
 
             .simple-contract__button {
-                @apply mt-[18px] bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors;
+                margin-top: 18px;
+                background-color: #2563eb;
+                color: white;
+                padding: 8px 16px;
+                border-radius: 6px;
+                transition: background-color 0.2s;
+
+                &:hover {
+                    background-color: #1d4ed8;
+                }
             }
         }
     }

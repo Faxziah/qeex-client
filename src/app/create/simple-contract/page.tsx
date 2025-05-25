@@ -7,6 +7,7 @@ import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection";
 import {useModal} from "@/app/context/ModalContext";
 import {TransactionFeeInfo} from "@/app/interface/IContract";
 import TransactionFee from "@/app/create/components/TransactionFee";
+import "@/app/styles/simple-contract.css";
 
 export default function Home() {
   const {isConnected} = useMetaMaskConnection();
@@ -67,8 +68,8 @@ export default function Home() {
   }
 
   return (
-    <div className="simple-contract">
-      <div className="simple-contract__container">
+    <div className="simple-contract-container">
+      <div className="simple-contract">
         <h2 className="title">Создайте смарт-контракт</h2>
         <p className="subtitle">
           Смарт-контракт с Вашим уникальным текстом будет сохранен в сети блокчейн навечно
