@@ -13,7 +13,7 @@ export default function Footer() {
           <p>Дополнительная информация</p>
           <ul>
             <li><Link href={'#contracts-type-container'}>Виды смарт-контрактов</Link></li>
-            <li><Link href={'#'}>FAQ</Link></li>
+            <li><Link href={'#faq-container'}>FAQ</Link></li>
             {/*<li><Link href={'#'}>Projects</Link></li>*/}
           </ul>
         </div>

@@ -100,7 +100,7 @@
                 }
 
                 &::after {
-                    content: url("/svg/arrow.svg");
+                    content: url("/svg/arrow-right.svg");
                     position: absolute;
                     right: 15px;
                     transform: translate(12%, 12%);
