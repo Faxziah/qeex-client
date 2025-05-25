@@ -32,7 +32,7 @@ export default function ContractItem({contract}: { contract: IContract }) {
           />
         </div>
         <h3>Блок № {contract.block_number}</h3>
-        <div className={'contract-item-status'}>{contract.status}</div>
+        <div className={`contract-item-status ${contract.status}`}>{contract.status}</div>
       </div>
       <div className={'contract-item-info'}>
         <div className={'contract-item-description'}>

@@ -25,7 +25,7 @@ export default function Header() {
         <nav className={'nav text pt-[24px] pb-[16px] flex pr-[80px]'}>
           <ul className={'flex flex-wrap items-center gap-[40px]'}>
             <li>
-              <Link href="/create">Создание смарт-контракта</Link>
+              <Link href="/create/simple-contract">Создание смарт-контракта</Link>
               <ul>
                 <Link href="/create/simple-contract">
                   <li>Создание простого смарт-контракта</li>

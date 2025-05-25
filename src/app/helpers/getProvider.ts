@@ -7,7 +7,7 @@ export function getProvider(chainId: number) {
     case 42161:
       return new ethers.AlchemyProvider('Arbitrum One', process.env.ALCHEMY_API);
     case 31337:
-      return new ethers.AlchemyProvider('homestead', process.env.ALCHEMY_API);
+      return new ethers.JsonRpcProvider("http://127.0.0.1:8545");
     default:
       throw new Error('Сеть не поддерживается');
   }

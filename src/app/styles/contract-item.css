@@ -35,12 +35,37 @@
     .contract-item-status {
         margin-right: 36px;
         padding: 6px;
-        border: 1px solid var(--button-green-border);
-        color: var(--button-green);
+        border: 1px solid #a0aec0;
+        color: #a0aec0;
         border-radius: 8px;
         font-size: 12px;
         font-weight: 600;
         line-height: 15px;
+
+        &.new {
+            border-color: #3182ce;
+            color: #3182ce;
+        }
+
+        &.paid {
+            border-color: #0065fd;
+            color: #0065fd;
+        }
+
+        &.wait_deployment {
+            border-color: #d69e2e;
+            color: #d69e2e;
+        }
+
+        &.deployed {
+            border-color: var(--button-green-border);
+            color: var(--button-green);
+        }
+
+        &.error {
+            border-color: #e53e3e;
+            color: #e53e3e;
+        }
     }
 }
 

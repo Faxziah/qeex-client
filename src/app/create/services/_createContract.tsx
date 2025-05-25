@@ -31,6 +31,7 @@ export async function _createContract(contractText: string) {
       value: ethers.parseEther(String(ethAmountRounded)) // eth на 1$
     });
   } catch (e: unknown) {
+    console.log(e);
     return;
   }
 
