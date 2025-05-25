@@ -1,15 +1,16 @@
 import Image from "next/image";
-import Link from 'next/link';
 import "@/app/styles/features.css";
+import SectionTitle from "@/app/components/SectionTitle";
 
 export default function Features() {
   return (
     <div className={'features-container'}>
       <div className={'features'}>
-        <div className={'features-background'}>FEATURES</div>
-        <h2 className={'title-with-underline features-title'}>Выделяйся. <br/>Просто. Быстро.</h2>
-        <h3 className={'subtitle-2 features-subtitle'}>Создай смарт-контракт, который всегда будет с тобой и делись с
-          кем-угодно</h3>
+        <SectionTitle
+          title={'Выделяйся. Просто. Быстро.'}
+          subtitle={'Создай смарт-контракт, который всегда будет с тобой и делись с кем-угодно'}
+          background={'Features'}
+        />
 
         <div className={'features-rows'}>
           <div className={'features-row'}>
@@ -53,7 +54,7 @@ export default function Features() {
             </div>
             <div className={'features-row-text'}>
               <h4 className={'title'}>Подшути над другом</h4>
-              <p className={'text'}>&#34;Виктор Семякин, ты теперь в блокчейн))&#34;</p>
+              <p className={'text'}>&#34;Игорь Семякин, ты теперь в блокчейн))&#34;</p>
             </div>
           </div>
         </div>

@@ -10,20 +10,20 @@ export default function Footer() {
     <footer className={'footer'}>
       <div className={'footer-left'}>
         <div className={'footer-column'}>
-          <p>О нас</p>
+          <p>Дополнительная информация</p>
           <ul>
-            <li><Link href={'#'}>О нас</Link></li>
+            <li><Link href={'#contracts-type-container'}>Виды смарт-контрактов</Link></li>
             <li><Link href={'#'}>FAQ</Link></li>
             {/*<li><Link href={'#'}>Projects</Link></li>*/}
           </ul>
         </div>
-        <div className={'footer-column'}>
-          <p>Контакты</p>
-          <ul>
-            <li><Link href={'#'}>Контакты</Link></li>
-            {/*<li><Link href={'#'}>Контакты</Link></li>*/}
-          </ul>
-        </div>
+        {/*<div className={'footer-column'}>*/}
+        {/*  <p>Контакты</p>*/}
+        {/*  <ul>*/}
+        {/*    <li><Link href={'#'}>Контакты</Link></li>*/}
+        {/*    /!*<li><Link href={'#'}>Контакты</Link></li>*!/*/}
+        {/*  </ul>*/}
+        {/*</div>*/}
       </div>
       <div className={'footer-right'}>
         <div className={'footer-column'}>
