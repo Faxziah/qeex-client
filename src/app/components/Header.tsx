@@ -30,6 +30,9 @@ export default function Header() {
                 <Link href="/create/simple-contract">
                   <li>Создание простого смарт-контракта</li>
                 </Link>
+                <Link href="/create/cryptocurrency">
+                  <li>Создание криптовалюты</li>
+                </Link>
               </ul>
             </li>
             <Link href="/me">

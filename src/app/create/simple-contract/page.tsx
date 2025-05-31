@@ -74,7 +74,7 @@ export default function Home() {
         <p className="subtitle">
           Твой смарт-контракт с уникальным текстом будет сохранен в сети блокчейн навсегда
         </p>
-        <form onSubmit={createContract} className="simple-contract__form">
+        <form onSubmit={createContract} className="simple-contract__form text">
           <label htmlFor="contract_text" className="simple-contract__label">
             Текст смарт-контракта
           </label>
@@ -84,6 +84,7 @@ export default function Home() {
             rows={7}
             className="simple-contract__textarea"
             onBlur={getCreateContractInfo}
+            placeholder="Ваня Кисляков из 9Б, с днем рождения!!"
           />
           <button type="submit" className="simple-contract__button">
             Создать смарт-контракт

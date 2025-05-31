@@ -31,3 +31,9 @@ export interface TransactionFeeInfo {
   fee: number;
   blockchainFee: number;
 }
+
+export interface CryptocurrencyFormData {
+  name: string;
+  symbol: string;
+  totalSupply: string;
+}
