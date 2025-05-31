@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import {IContract} from "@/app/interface/IContract";
+import {IContract, ContractStatusRus} from "@/app/interface/IContract";
 import {_getContract} from "@/app/me/services/_getContract";
 import {formatDateDMYHI} from "@/app/helpers/formatDate";
 import {useModal} from "@/app/context/ModalContext";
@@ -32,7 +32,7 @@ export default function ContractItem({contract}: { contract: IContract }) {
           />
         </div>
         <h3>Блок № {contract.block_number}</h3>
-        <div className={`contract-item-status ${contract.status}`}>{contract.status}</div>
+        <div className={`contract-item-status ${contract.status}`}>{ContractStatusRus[contract.status]}</div>
       </div>
       <div className={'contract-item-info'}>
         <div className={'contract-item-description'}>

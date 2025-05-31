@@ -19,6 +19,14 @@ export enum ContractStatus {
   ERROR = "error",
 }
 
+export const ContractStatusRus: Record<ContractStatus, string> = {
+  [ContractStatus.NEW]: 'Новый',
+  [ContractStatus.PAID]: 'Оплачен',
+  [ContractStatus.WAIT_DEPLOYMENT]: 'Ожидает загрузки',
+  [ContractStatus.DEPLOYED]: 'Загружен',
+  [ContractStatus.ERROR]: 'Ошибка'
+};
+
 export interface TransactionFeeInfo {
   fee: number;
   blockchainFee: number;
