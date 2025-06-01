@@ -1,1 +1,1 @@
-export const CREATE_CONTRACT_URL = '/api/contracts/create';
+export const CREATE_CONTRACT_URL = '/api/contracts/';

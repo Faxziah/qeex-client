@@ -9,6 +9,7 @@ export interface IContract {
   address: string;
   created_at: string;
   user: IUser;
+  contract_type_id: ContractType;
 }
 
 export enum ContractStatus {
@@ -37,3 +38,13 @@ export interface CryptocurrencyFormData {
   symbol: string;
   totalSupply: string;
 }
+
+export enum ContractType {
+  SIMPLE_CONTRACT = 1,
+  ERC20 = 2
+}
+
+export const ContractTypeRus: Record<ContractType, string> = {
+  [ContractType.SIMPLE_CONTRACT]: 'Смарт-контракт',
+  [ContractType.ERC20]: 'Криптовалюта'
+};

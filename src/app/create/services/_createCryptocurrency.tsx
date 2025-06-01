@@ -3,9 +3,9 @@
 import {BaseContract, ethers, TransactionResponse} from "ethers";
 import {IERC20_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 import {CREATE_CONTRACT_URL} from "@/app/constants/backendUrl";
-import {BASE_FEE_IN_USD, MASTER_ADDRESS} from "@/app/constants/constants";
+import {BASE_FEE_IN_USD, MAIN_ADDRESS_TO_GET_PAYMENT} from "@/app/constants/constants";
 import {getEthAmountForUsd} from "@/app/helpers/coingecko";
-import {CryptocurrencyFormData} from "@/app/interface/IContract";
+import {CryptocurrencyFormData, ContractType} from "@/app/interface/IContract";
 
 export async function _createCryptocurrency(info: CryptocurrencyFormData) {
   if (!window.ethereum) {
@@ -28,7 +28,7 @@ export async function _createCryptocurrency(info: CryptocurrencyFormData) {
 
   try {
     sendEthTx = await signer.sendTransaction({
-      to: MASTER_ADDRESS,
+      to: MAIN_ADDRESS_TO_GET_PAYMENT,
       value: ethers.parseEther(String(ethAmountRounded))
     });
   } catch (e: unknown) {
@@ -80,7 +80,8 @@ export async function _createCryptocurrency(info: CryptocurrencyFormData) {
     walletAddress: walletAddress,
     chainId: Number(chainId),
     blockNumber: blockNumber,
-    payTxHash: sendEthTx.hash
+    paymentTransactionHash: sendEthTx.hash,
+    contractTypeId: ContractType.ERC20
   };
 
   const response = await fetch(CREATE_CONTRACT_URL, {
