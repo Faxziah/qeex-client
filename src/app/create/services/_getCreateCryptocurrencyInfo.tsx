@@ -4,7 +4,7 @@ import {ethers} from "ethers";
 import {TransactionFeeInfo, CryptocurrencyFormData} from "@/app/interface/IContract";
 import {BASE_FEE_IN_USD} from "@/app/constants/constants";
 import {COINGECKO_ETH_USD} from "@/app/constants/apiUrl";
-import {IERC20_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
+import {TOKEN_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 
 export async function _getCreateCryptocurrencyInfo(info: CryptocurrencyFormData): Promise<TransactionFeeInfo | undefined> {
   if (!window.ethereum) {
@@ -23,7 +23,7 @@ export async function _getCreateCryptocurrencyInfo(info: CryptocurrencyFormData)
     throw new Error('Некорректная цена газа');
   }
 
-  const erc20ContractAbi = await fetch(IERC20_CONTRACT_TEMPLATE_PATH);
+  const erc20ContractAbi = await fetch(TOKEN_CONTRACT_TEMPLATE_PATH);
   const {abi: contractAbi, bytecode: contractBytecode} = await erc20ContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);

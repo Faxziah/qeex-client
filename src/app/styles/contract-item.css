@@ -109,3 +109,11 @@
         }
     }
 }
+
+.nft-modal-image {
+    max-height: 250px;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+    margin-bottom: 15px; /* Add some space below the image */
+}

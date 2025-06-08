@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import {IContract, ContractStatusRus, ContractTypeRus} from "@/app/interface/IContract";
+import {IContract, ContractStatusRus, ContractTypeRus, ContractType} from "@/app/interface/IContract";
 import {_getContract} from "@/app/me/services/_getContract";
 import {formatDateDMYHI} from "@/app/helpers/formatDate";
 import {useModal} from "@/app/context/ModalContext";
@@ -10,6 +10,8 @@ import Image from "next/image";
 import Link from 'next/link';
 import {Chains} from "@/app/constants/chains";
 import "@/app/styles/contract-item.css";
+import {ethers} from "ethers";
+import {NFT_CONTRACT_TEMPLATE_PATH, TOKEN_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 
 export default function ContractItem({contract}: { contract: IContract }) {
   const {showModal} = useModal();
@@ -17,6 +19,86 @@ export default function ContractItem({contract}: { contract: IContract }) {
   async function getContract(contractAddress: string) {
     const contractText: string | undefined = await _getContract(contractAddress);
     showModal(`Смарт-контракт ${contract.address}`, contractText ?? '', undefined, voidFunction, voidFunction, true);
+  }
+
+  async function getERC20ContractInfo(contractAddress: string) {
+    if (typeof window.ethereum === 'undefined') {
+      showModal('Ошибка', 'MetaMask не установлен.');
+      return;
+    }
+
+    try {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const erc20ContractAbi = await fetch(TOKEN_CONTRACT_TEMPLATE_PATH);
+      const {abi: contractAbi} = await erc20ContractAbi.json();
+
+      const erc20Contract = new ethers.Contract(contractAddress, contractAbi, provider);
+
+      const name = await erc20Contract.name();
+      const symbol = await erc20Contract.symbol();
+      const decimals = await erc20Contract.decimals();
+      const totalSupply = ethers.formatUnits(await erc20Contract.totalSupply(), decimals);
+
+      const contractBalance = ethers.formatUnits(await provider.getBalance(contractAddress), 18);
+      const userTokenBalance = ethers.formatUnits(await erc20Contract.balanceOf(contract.user.address), decimals);
+
+      const modalContent = `
+        <p><strong>Название:</strong> ${name}</p>
+        <p><strong>Символ:</strong> ${symbol}</p>
+        <p><strong>Общее предложение:</strong> ${totalSupply}</p>
+        <p><strong>Адрес смарт-контракта:</strong> ${contractAddress}</p>
+        <p><strong>Баланс контракта (ETH):</strong> ${contractBalance}</p>
+        <p><strong>Ваш баланс токенов:</strong> ${userTokenBalance} ${symbol}</p>
+      `;
+
+      showModal(`Информация о криптовалюте ${symbol}`, modalContent, undefined, voidFunction, voidFunction, true);
+    } catch (error) {
+      console.error("Error fetching ERC20 contract info:", error);
+      showModal('Ошибка', 'Не удалось получить информацию о криптовалюте.');
+    }
+  }
+
+  async function getERC721ContractInfo(contractAddress: string) {
+    if (typeof window.ethereum === 'undefined') {
+      showModal('Ошибка', 'MetaMask не установлен.');
+      return;
+    }
+
+    try {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const erc721ContractAbi = await fetch(NFT_CONTRACT_TEMPLATE_PATH);
+      const {abi: contractAbi} = await erc721ContractAbi.json();
+
+      const erc721Contract = new ethers.Contract(contractAddress, contractAbi, provider);
+
+      const name = await erc721Contract.name();
+      const symbol = await erc721Contract.symbol();
+      const baseUri = await erc721Contract.tokenURI(0);
+
+      let imageUrl = '';
+      try {
+        const metadataResponse = await fetch(baseUri);
+        const metadata = await metadataResponse.json();
+        if (metadata.image) {
+          imageUrl = metadata.image;
+        }
+      } catch (error) {
+        console.error("Error fetching NFT metadata:", error);
+      }
+
+      const modalContent = `
+        ${imageUrl ? `<img src="${imageUrl}" alt="NFT Image" class="nft-modal-image"/>` : ''}
+        <p><strong>Название:</strong> ${name}</p>
+        <p><strong>Символ:</strong> ${symbol}</p>
+        <p><strong>URI:</strong> ${baseUri}</p>
+        <p><strong>Адрес смарт-контракта:</strong> ${contractAddress}</p>
+      `;
+
+      showModal(`Информация об NFT-токене ${symbol}`, modalContent, undefined, voidFunction, voidFunction, true);
+    } catch (error) {
+      console.error("Error fetching ERC721 contract info:", error);
+      showModal('Ошибка', 'Не удалось получить информацию об NFT-токене.');
+    }
   }
 
   return (
@@ -55,8 +137,19 @@ export default function ContractItem({contract}: { contract: IContract }) {
             <h4>Адрес смарт-контракта: {contract.address}</h4>
           )}
         </div>
-        <div className={'contract-item-preview'} onClick={() => getContract(contract.address)}>
-          <p>Нажмите для просмотра текста смарт-контракта</p>
+        <div className={'contract-item-preview'} onClick={() => {
+          if (contract.contract_type_id === ContractType.ERC20) {
+            getERC20ContractInfo(contract.address);
+          } else if (contract.contract_type_id === ContractType.ERC721) {
+            getERC721ContractInfo(contract.address);
+          } else {
+            getContract(contract.address);
+          }
+        }}>
+          {contract.contract_type_id === ContractType.ERC20 && <p>Нажмите для просмотра информации о криптовалюте</p>}
+          {contract.contract_type_id === ContractType.ERC721 && <p>Нажмите для просмотра информации об nft-токене</p>}
+          {contract.contract_type_id === ContractType.SIMPLE_CONTRACT &&
+            <p>Нажмите для просмотра текста смарт-контракта</p>}
         </div>
         <div className={'contract-item-tools'}>
           <Image
@@ -64,7 +157,15 @@ export default function ContractItem({contract}: { contract: IContract }) {
             width={15}
             height={15}
             alt="Show contract"
-            onClick={() => getContract(contract.address)}
+            onClick={() => {
+              if (contract.contract_type_id === ContractType.ERC20) {
+                getERC20ContractInfo(contract.address);
+              } else if (contract.contract_type_id === ContractType.ERC721) {
+                getERC721ContractInfo(contract.address);
+              } else {
+                getContract(contract.address);
+              }
+            }}
             className={'svg'}
           />
         </div>

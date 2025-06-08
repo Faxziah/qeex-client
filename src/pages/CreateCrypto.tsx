@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ethers } from 'ethers';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography, Container, Paper } from '@mui/material';
-import ERC20 from '../../public/contracts/ERC20/ERC20.json';
+import ERC20 from '../../public/contracts/ERC20/Token.json';
 
 const CreateCrypto: React.FC = () => {
   const navigate = useNavigate();

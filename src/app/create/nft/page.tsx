@@ -17,7 +17,6 @@ export default function CreateNft() {
     name: '',
     symbol: '',
     baseUri: '',
-    maxSupply: ''
   });
 
   async function createNft(event: React.FormEvent<HTMLFormElement>) {
@@ -28,7 +27,7 @@ export default function CreateNft() {
       return;
     }
 
-    if (!formData.name || !formData.symbol || !formData.baseUri || !formData.maxSupply) {
+    if (!formData.name || !formData.symbol || !formData.baseUri) {
       showModal('Необходимо заполнить все поля');
       return;
     }
@@ -49,7 +48,7 @@ export default function CreateNft() {
       return;
     }
 
-    if (!formData.name || !formData.symbol || !formData.baseUri || !formData.maxSupply) {
+    if (!formData.name || !formData.symbol || !formData.baseUri) {
       return;
     }
 
@@ -131,22 +130,6 @@ export default function CreateNft() {
               onChange={handleInputChange}
               onBlur={handleInputBlur}
               placeholder="Например: ipfs://QmWfNfJ.../"
-            />
-          </div>
-
-          <div className="nft__form-group">
-            <label htmlFor="maxSupply" className="nft__label">
-              Максимальное количество токенов
-            </label>
-            <input
-              id="maxSupply"
-              name="maxSupply"
-              type="number"
-              className="nft__input"
-              value={formData.maxSupply}
-              onChange={handleInputChange}
-              onBlur={handleInputBlur}
-              placeholder="Например: 10000"
             />
           </div>
 

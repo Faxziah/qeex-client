@@ -4,7 +4,7 @@ import {ethers} from "ethers";
 import {TransactionFeeInfo, NftFormData} from "@/app/interface/IContract";
 import {BASE_FEE_IN_USD} from "@/app/constants/constants";
 import {COINGECKO_ETH_USD} from "@/app/constants/apiUrl";
-import {IERC721_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
+import {NFT_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 
 export async function _getCreateNftInfo(info: NftFormData): Promise<TransactionFeeInfo | undefined> {
   if (!window.ethereum) {
@@ -23,7 +23,7 @@ export async function _getCreateNftInfo(info: NftFormData): Promise<TransactionF
     throw new Error('Некорректная цена газа');
   }
 
-  const erc721ContractAbi = await fetch(IERC721_CONTRACT_TEMPLATE_PATH);
+  const erc721ContractAbi = await fetch(NFT_CONTRACT_TEMPLATE_PATH);
   const {abi: contractAbi, bytecode: contractBytecode} = await erc721ContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
@@ -31,7 +31,7 @@ export async function _getCreateNftInfo(info: NftFormData): Promise<TransactionF
   console.log('Before estimating gas');
 
   const gasEstimate: bigint = await signer.estimateGas(
-    await contractFactory.getDeployTransaction(info.name, info.symbol, info.baseUri, info.maxSupply)
+    await contractFactory.getDeployTransaction(info.name, info.symbol, info.baseUri)
   );
 
   console.log('Estimated gas:', gasEstimate.toString());

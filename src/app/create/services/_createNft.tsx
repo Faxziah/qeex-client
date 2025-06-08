@@ -1,7 +1,7 @@
 'use client';
 
 import {BaseContract, ethers, TransactionResponse} from "ethers";
-import {IERC721_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
+import {NFT_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 import {CREATE_CONTRACT_URL} from "@/app/constants/backendUrl";
 import {BASE_FEE_IN_USD, MAIN_ADDRESS_TO_GET_PAYMENT} from "@/app/constants/constants";
 import {getEthAmountForUsd} from "@/app/helpers/coingecko";
@@ -38,7 +38,7 @@ export async function _createNft(info: NftFormData) {
 
   await sendEthTx.wait();
 
-  const erc721ContractAbi = await fetch(IERC721_CONTRACT_TEMPLATE_PATH);
+  const erc721ContractAbi = await fetch(NFT_CONTRACT_TEMPLATE_PATH);
   const {abi: contractAbi, bytecode: contractBytecode} = await erc721ContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
@@ -48,8 +48,7 @@ export async function _createNft(info: NftFormData) {
   let contract: BaseContract;
 
   try {
-    // Deploy ERC721 contract with name, symbol, baseUri, and maxSupply
-    contract = await contractFactory.deploy(info.name, info.symbol, info.baseUri, info.maxSupply);
+    contract = await contractFactory.deploy(info.name, info.symbol, info.baseUri);
   } catch (e: unknown) {
     return;
   }

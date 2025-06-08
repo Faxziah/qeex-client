@@ -43,7 +43,6 @@ export interface NftFormData {
   name: string;
   symbol: string;
   baseUri: string;
-  maxSupply: string;
 }
 
 export enum ContractType {

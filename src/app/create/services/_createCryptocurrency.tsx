@@ -1,7 +1,7 @@
 'use client';
 
 import {BaseContract, ethers, TransactionResponse} from "ethers";
-import {IERC20_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
+import {TOKEN_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 import {CREATE_CONTRACT_URL} from "@/app/constants/backendUrl";
 import {BASE_FEE_IN_USD, MAIN_ADDRESS_TO_GET_PAYMENT} from "@/app/constants/constants";
 import {getEthAmountForUsd} from "@/app/helpers/coingecko";
@@ -38,7 +38,7 @@ export async function _createCryptocurrency(info: CryptocurrencyFormData) {
 
   await sendEthTx.wait();
 
-  const erc20ContractAbi = await fetch(IERC20_CONTRACT_TEMPLATE_PATH);
+  const erc20ContractAbi = await fetch(TOKEN_CONTRACT_TEMPLATE_PATH);
   const {abi: contractAbi, bytecode: contractBytecode} = await erc20ContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
