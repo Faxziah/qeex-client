@@ -28,7 +28,7 @@ export default function DarkModeSwitcher() {
     <button
       id="theme-toggle"
       type="button"
-      className="text-gray-500 dark:text-gray-400 rounded-lg text-sm cursor-pointer pt-[8px] px-[16px] pb-[24px]"
+      className="text-gray-500 dark:text-gray-400 rounded-lg text-sm cursor-pointer pt-[8px] px-[16px] pb-[8px]"
       onClick={toggleMode}
     >
       <Image

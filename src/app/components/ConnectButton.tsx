@@ -10,7 +10,7 @@ export default function ConnectButton() {
     <>
       <button
         type="button"
-        className={"text underline-violet cursor-pointer pt-[8px] pb-[24px]"}
+        className={"text underline-violet cursor-pointer pt-[8px] pb-[8px]"}
         onClick={connect}
       >
         {isConnected ? "Подключено" : "Подключить кошелек"}
