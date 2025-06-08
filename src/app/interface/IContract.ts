@@ -39,12 +39,21 @@ export interface CryptocurrencyFormData {
   totalSupply: string;
 }
 
+export interface NftFormData {
+  name: string;
+  symbol: string;
+  baseUri: string;
+  maxSupply: string;
+}
+
 export enum ContractType {
   SIMPLE_CONTRACT = 1,
-  ERC20 = 2
+  ERC20 = 2,
+  ERC721 = 3
 }
 
 export const ContractTypeRus: Record<ContractType, string> = {
   [ContractType.SIMPLE_CONTRACT]: 'Смарт-контракт',
-  [ContractType.ERC20]: 'Криптовалюта'
+  [ContractType.ERC20]: 'Криптовалюта',
+  [ContractType.ERC721]: 'NFT Токен'
 };

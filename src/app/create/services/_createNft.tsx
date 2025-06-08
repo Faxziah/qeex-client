@@ -1,13 +1,13 @@
 'use client';
 
 import {BaseContract, ethers, TransactionResponse} from "ethers";
-import {EVERLASTING_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
+import {IERC721_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 import {CREATE_CONTRACT_URL} from "@/app/constants/backendUrl";
 import {BASE_FEE_IN_USD, MAIN_ADDRESS_TO_GET_PAYMENT} from "@/app/constants/constants";
 import {getEthAmountForUsd} from "@/app/helpers/coingecko";
-import {ContractType} from "@/app/interface/IContract";
+import {NftFormData, ContractType} from "@/app/interface/IContract";
 
-export async function _createContract(contractText: string) {
+export async function _createNft(info: NftFormData) {
   if (!window.ethereum) {
     console.warn("MetaMask is not installed");
     return;
@@ -29,7 +29,7 @@ export async function _createContract(contractText: string) {
   try {
     sendEthTx = await signer.sendTransaction({
       to: MAIN_ADDRESS_TO_GET_PAYMENT,
-      value: ethers.parseEther(String(ethAmountRounded)) // eth на 1$
+      value: ethers.parseEther(String(ethAmountRounded))
     });
   } catch (e: unknown) {
     console.log(e);
@@ -38,26 +38,27 @@ export async function _createContract(contractText: string) {
 
   await sendEthTx.wait();
 
-  const everlastingContractAbi = await fetch(EVERLASTING_CONTRACT_TEMPLATE_PATH);
-  const {abi: contractAbi, bytecode: contractBytecode} = await everlastingContractAbi.json();
+  const erc721ContractAbi = await fetch(IERC721_CONTRACT_TEMPLATE_PATH);
+  const {abi: contractAbi, bytecode: contractBytecode} = await erc721ContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
 
-  console.log('Before creating contract');
+  console.log('Before creating NFT contract');
 
   let contract: BaseContract;
 
   try {
-    contract = await contractFactory.deploy(contractText);
+    // Deploy ERC721 contract with name, symbol, baseUri, and maxSupply
+    contract = await contractFactory.deploy(info.name, info.symbol, info.baseUri, info.maxSupply);
   } catch (e: unknown) {
     return;
   }
 
-  console.log('After creating contract');
+  console.log('After creating NFT contract');
 
   await contract.waitForDeployment();
 
-  console.log('After deploying contract');
+  console.log('After deploying NFT contract');
 
   const contractDeployTx = contract.deploymentTransaction();
 
@@ -79,7 +80,7 @@ export async function _createContract(contractText: string) {
     chainId: Number(chainId),
     blockNumber: blockNumber,
     paymentTransactionHash: sendEthTx.hash,
-    contractTypeId: ContractType.SIMPLE_CONTRACT
+    contractTypeId: ContractType.ERC721
   };
 
   const response = await fetch(CREATE_CONTRACT_URL, {
@@ -90,7 +91,7 @@ export async function _createContract(contractText: string) {
 
   const result: object = await response.json();
 
-  console.log('result _createContract', result);
+  console.log('result _createNft', result);
 
   return contract.target;
-}
+} 

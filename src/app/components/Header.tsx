@@ -33,6 +33,9 @@ export default function Header() {
                 <Link href="/create/cryptocurrency">
                   <li>Создание криптовалюты</li>
                 </Link>
+                <Link href="/create/nft">
+                  <li>Создание NFT Токена</li>
+                </Link>
               </ul>
             </li>
             <Link href="/me">
