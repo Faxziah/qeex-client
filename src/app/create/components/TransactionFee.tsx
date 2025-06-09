@@ -6,7 +6,7 @@ export default function TransactionFee({ transactionFee }: { transactionFee: Tra
     Number.parseFloat(String(transactionFee.fee)) + Number.parseFloat(String(transactionFee.blockchainFee))
 
   return (
-    <div className="w-full bg-var(--background) py-8">
+    <div className="bg-background py-8">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-lg border border-neutral-200 dark:border-neutral-700 p-6 sm:p-8">
           {/* Header */}

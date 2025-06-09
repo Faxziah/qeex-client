@@ -321,9 +321,7 @@ export default function CreateCryptocurrency() {
 
       {/* Transaction Fee Section */}
       {transactionFee && (
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-(--background)">
-          <TransactionFee transactionFee={transactionFee}/>
-        </div>
+        <TransactionFee transactionFee={transactionFee} />
       )}
 
       <style jsx>{`
