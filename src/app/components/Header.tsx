@@ -158,9 +158,9 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             {isMenuOpened ? (
-              <Image src="/svg/cross.svg" width={24} height={24} alt="Close menu" className="w-6 h-6" />
+              <Image src="/svg/cross.svg" width={24} height={24} alt="Close menu" className="w-6 h-6 svg" />
             ) : (
-              <Image src="/svg/hamburger.svg" width={24} height={24} alt="Open menu" className="w-6 h-6" />
+              <Image src="/svg/hamburger.svg" width={24} height={24} alt="Open menu" className="w-6 h-6 svg" />
             )}
           </button>
         </div>
