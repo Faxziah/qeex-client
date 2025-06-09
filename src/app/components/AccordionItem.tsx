@@ -1,37 +1,35 @@
-'use client';
+"use client"
 
-import {useState} from 'react';
-import Image from "next/image";
+import { useRef, useEffect } from "react"
+import "../styles/accordion.css"
 
-import "@/app/styles/accordion.css";
-
-interface AccordionItem {
-  title: string;
-  content: string;
+interface AccordionItemProps {
+  question: string
+  answer: string
+  isActive: boolean
+  onClick: () => void
 }
 
-const AccordionItem = ({title, content}: AccordionItem) => {
-  const [isActive, setIsActive] = useState(false);
+const AccordionItem = ({ question, answer, isActive, onClick }: AccordionItemProps) => {
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.style.maxHeight = isActive ? `${contentRef.current.scrollHeight}px` : "0px"
+    }
+  }, [isActive])
 
   return (
-    <div className="accordion-item" onClick={() => setIsActive(!isActive)}>
-      <div className="accordion-title">
-        <p className={'text'}>{title}</p>
-        <div>
-          <Image
-            src={'/svg/arrow-down.svg'}
-            width={12}
-            height={12}
-            alt={'Arrow down'}
-            className={`svg ${isActive ? 'active' : ''}`}
-          />
-        </div>
-      </div>
-      <div className={`accordion-content ${isActive ? 'active' : ''}`}>
-        <div className="content-inner">{content}</div>
+    <div className={`accordion-item ${isActive ? "active" : ""}`}>
+      <button className="accordion-header" onClick={onClick} aria-expanded={isActive}>
+        <span className="accordion-title">{question}</span>
+        <span className="accordion-icon">{isActive ? "−" : "+"}</span>
+      </button>
+      <div ref={contentRef} className="accordion-content">
+        <div className="accordion-body">{answer}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AccordionItem;
+export default AccordionItem

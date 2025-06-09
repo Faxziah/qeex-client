@@ -1,4 +1,4 @@
-export function formatDateDMYHI(isoDate: string) {
+export function formatDate(isoDate: string) {
   const date = new Date(isoDate);
 
   const day = String(date.getUTCDate()).padStart(2, '0');

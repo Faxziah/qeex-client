@@ -1,101 +1,75 @@
-'use client';
+"use client"
 
-import React, {useEffect} from "react";
-import Image from "next/image";
-import {voidFunction} from "@/app/helpers/voidFunction";
+import { useEffect, useRef, type ReactNode } from "react"
+import { createPortal } from "react-dom"
+import "../styles/modal.css"
 
 interface ModalProps {
-  isOpen: boolean;
-  title: string;
-  type?: 'error' | 'warning' | 'success' | 'pencil';
-  onCloseAction: () => void;
-  onConfirmAction?: () => void;
-  children: React.ReactNode;
+  isOpen: boolean
+  onClose: () => void
+  title?: string
+  children: ReactNode
+  size?: "small" | "medium" | "large"
 }
 
-const modalIconsPath = {
-  error: '/svg/error.svg',
-  warning: '/svg/warning.svg',
-  success: '/svg/success.svg',
-  pencil: '/svg/pencil.svg',
-};
+const Modal = ({ isOpen, onClose, title, children, size = "medium" }: ModalProps) => {
+  const modalRef = useRef<HTMLDivElement>(null)
 
-export default function Modal({isOpen, title, type, onCloseAction, onConfirmAction, children}: ModalProps) {
+  // Закрытие по клику вне модального окна
   useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onCloseAction();
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        onClose()
       }
-    };
+    }
 
     if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("mousedown", handleClickOutside)
+      // Блокируем прокрутку страницы
+      document.body.style.overflow = "hidden"
     }
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isOpen, onCloseAction]);
-
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onCloseAction();
+      document.removeEventListener("mousedown", handleClickOutside)
+      // Восстанавливаем прокрутку страницы
+      document.body.style.overflow = "unset"
     }
-  };
+  }, [isOpen, onClose])
 
-  if (!isOpen) {
-    return null;
-  }
+  // Закрытие по нажатию Escape
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose()
+      }
+    }
 
-  return (
-    <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div className="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+    if (isOpen) {
+      document.addEventListener("keydown", handleEscKey)
+    }
 
-      <div className="fixed inset-0 z-10 w-screen overflow-y-auto flex items-center justify-center p-4"
-           onClick={handleOverlayClick}>
-        <div
-          className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all w-1/2">
-          <div className="absolute top-4 right-4 cursor-pointer" onClick={onCloseAction}>
-            <svg className="w-6 h-6 text-gray-500 hover:text-gray-800 mr-[15px]" fill="none" stroke="currentColor"
-                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </div>
-          <div className="bg-white px-4 pt-5 pb-[40px] max-h-[60vh] overflow-y-scroll">
-            <div className="sm:flex sm:items-start">
-              <div
-                className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full sm:mx-0 sm:size-10">
-                {type && modalIconsPath[type] ?
-                  <Image
-                    src={modalIconsPath[type]}
-                    width={32}
-                    height={32}
-                    alt="Modal icon"
-                  />
-                  : null}
-              </div>
-              <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                <h3 className="text-base font-semibold text-gray-900" id="modal-title">{title}</h3>
-                <div className="mt-2 text-sm text-gray-500 pt-4">
-                  {children}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-            {onConfirmAction && onConfirmAction !== voidFunction ? (
-              <button onClick={onConfirmAction} type="button"
-                      className="inline-flex w-full justify-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-green-500 sm:ml-3 sm:w-auto cursor-pointer">
-                Подтвердить
-              </button>
-            ) : null}
-            <button onClick={onCloseAction} type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 sm:mt-0 sm:w-auto cursor-pointer">
-              Отмена
-            </button>
-          </div>
+    return () => {
+      document.removeEventListener("keydown", handleEscKey)
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  // Используем портал для рендеринга модального окна в конце body
+  return createPortal(
+    <div className="modal-overlay">
+      <div className={`modal-container ${size}`} ref={modalRef} role="dialog" aria-modal="true">
+        <div className="modal-header">
+          {title && <h3 className="modal-title">{title}</h3>}
+          <button className="modal-close" onClick={onClose} aria-label="Закрыть">
+            ✕
+          </button>
         </div>
+        <div className="modal-content">{children}</div>
       </div>
-    </div>
-  );
+    </div>,
+    document.body,
+  )
 }
+
+export default Modal
