@@ -385,15 +385,15 @@ export default function CreateNft() {
 
       {/* Transaction Fee Section */}
       {transactionFee && (
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <TransactionFee transactionFee={transactionFee} />
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-(--background)">
+          <TransactionFee transactionFee={transactionFee}/>
         </div>
       )}
 
       <style jsx>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
+          @keyframes blob {
+              0% {
+                  transform: translate(0px, 0px) scale(1);
           }
           33% {
             transform: translate(30px, -50px) scale(1.1);
