@@ -1,79 +1,26 @@
-"use client"
+import SectionTitle from "@/app/components/SectionTitle";
+import AccordionItem from "@/app/components/AccordionItem";
+import "@/app/styles/faq.css";
 
-import { useState } from "react"
-import AccordionItem from "./AccordionItem"
-import SectionTitle from "./SectionTitle"
-import "../styles/faq.css"
-
-const FAQ = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(0)
-
-  const toggleAccordion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index)
-  }
-
-  const faqItems = [
-    {
-      question: "Что такое смарт-контракт?",
-      answer:
-        "Смарт-контракт — это программа на блокчейне, которая автоматически выполняет действия при соблюдении определенных условий. Они работают по принципу «если..., то...» и позволяют проводить надежные транзакции без посредников.",
-    },
-    {
-      question: "Нужно ли мне знать программирование для создания смарт-контракта?",
-      answer:
-        "Нет, наш сервис позволяет создавать смарт-контракты без знания программирования. Мы предоставляем простой интерфейс, где вы можете указать параметры контракта, а система автоматически сгенерирует и развернет его на блокчейне.",
-    },
-    {
-      question: "Какие блокчейны поддерживает ваш сервис?",
-      answer:
-        "Наш сервис поддерживает создание смарт-контрактов на нескольких популярных блокчейнах, включая Ethereum, Binance Smart Chain, Polygon, Avalanche и Solana. Вы можете выбрать наиболее подходящий для ваших целей.",
-    },
-    {
-      question: "Сколько стоит создание смарт-контракта?",
-      answer:
-        "Стоимость создания смарт-контракта включает нашу комиссию за сервис и комиссию сети (gas fee). Наша комиссия зависит от типа контракта, а комиссия сети зависит от выбранного блокчейна и сложности контракта. Точную стоимость вы увидите перед подтверждением создания.",
-    },
-    {
-      question: "Как я могу управлять своими смарт-контрактами?",
-      answer:
-        "После создания контракта вы можете управлять им через раздел «Мои контракты». Там вы найдете все созданные вами контракты, сможете просматривать их статус, взаимодействовать с ними и отслеживать транзакции.",
-    },
-    {
-      question: "Безопасно ли использовать ваш сервис?",
-      answer:
-        "Да, безопасность — наш приоритет. Мы используем проверенные шаблоны смарт-контрактов, которые прошли аудит безопасности. Кроме того, мы не храним ваши приватные ключи — все транзакции подписываются через ваш кошелек (MetaMask или другие поддерживаемые кошельки).",
-    },
-  ]
+export default function FAQ() {
 
   return (
-    <section className="faq" id="faq">
-      <div className="container">
-        <SectionTitle
-          title="Часто задаваемые вопросы"
-          subtitle="Ответы на популярные вопросы о нашем сервисе и смарт-контрактах"
-        />
+    <div className={'faq-container'} id={'faq-container'}>
+      <SectionTitle
+        title={'FAQ'}
+        background={'FAQ'}
+      />
 
-        <div className="faq-container">
-          {faqItems.map((item, index) => (
-            <AccordionItem
-              key={index}
-              question={item.question}
-              answer={item.answer}
-              isActive={activeIndex === index}
-              onClick={() => toggleAccordion(index)}
-            />
-          ))}
-        </div>
-
-        <div className="faq-more">
-          <p>Не нашли ответ на свой вопрос?</p>
-          <a href="/contact" className="btn btn-primary">
-            Связаться с поддержкой
-          </a>
+      <div className={'faq'}>
+        <div className="accordion">
+          <AccordionItem title={'Какая стоимость создания смарт-контракта?'}
+                         content={'Стоимость складывается из комиссии сервиса в размере $1 (в ETH) и газа сети (эта сумму получает сеть, сервис ее не получает)'}/>
+          <AccordionItem title={'Как создать смарт-контракт?'}
+                         content={'Подключите криптокошелек, создания выбранного смарт-контракта, заполните нужные данные и подтвердите транзакцию для загрузки смарт-контракта в сеть блокчейна'}/>
+          <AccordionItem title={'Где я могу посмотреть созданные смарт-контракты?'}
+                         content={'Созданные смарт-контракты доступны, как в личном кабинете, так и на официальном сайт сети - etherscan'}/>
         </div>
       </div>
-    </section>
-  )
+    </div>
+  );
 }
-
-export default FAQ

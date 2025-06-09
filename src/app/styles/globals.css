@@ -1,439 +1,60 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-@import "./variables.css";
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-}
-
-@media (max-width: 768px) {
-    html {
-        font-size: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    html {
-        font-size: 14px;
-    }
-}
-
 body {
-    font-family: "Inter", sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    transition: all 0.3s ease;
-    overflow-x: hidden;
+    @apply bg-background text-foreground;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--container-padding);
+.text {
+    @apply text-text text-[18px] font-[400] leading-[22px];
 }
 
-@media (max-width: 768px) {
-    .container {
-        padding: 0 var(--container-padding-mobile);
+.button {
+    @apply p-[10px] rounded-[39px] bg-button-violet-bg text-button-violet text-[16px] font-[600] leading-[20px] text-center cursor-pointer hover:text-white;
+}
+
+.button-2 {
+    @apply rounded-[6px] bg-button-2-bg hover:bg-button-2-bg-hover text-white text-[14px] font-[500] leading-[20px] p-[8px] cursor-pointer;
+}
+
+.button-3 {
+    @apply rounded-[39px] bg-button-3-bg hover:bg-button-3-bg-hover text-button-3-text text-[16px] font-[600] leading-[20px] uppercase text-center py-[22px] px-[50px] cursor-pointer;
+}
+
+.button-transparent {
+    @apply rounded-[39px] text-text text-[16px] font-[600] leading-[20px] uppercase text-center py-[22px] px-[50px] border border-border-white hover:border-border-white-hover cursor-pointer;
+}
+
+.gear {
+    animation: spin 2s linear infinite paused;
+
+    @variant hover {
+        animation-play-state: running;
     }
 }
 
-/* Button styles */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 24px;
-    border: none;
-    border-radius: var(--border-radius-sm);
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    min-height: var(--touch-target-size);
+.title {
+    @apply text-title text-[36px] font-[600] leading-[40px] mb-[18px];
 }
 
-@media (max-width: 768px) {
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-        width: 100%;
-    }
+.title-2 {
+    @apply text-text text-[64px] font-[800] leading-[78px];
 }
 
-.btn-primary {
-    background: var(--primary-gradient);
-    color: white;
+.subtitle {
+    @apply text-subtitle text-[14px] font-[300] leading-[20px];
 }
 
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+.subtitle-2 {
+    @apply text-text text-[32px] font-[500] leading-[48px];
 }
 
-.btn-secondary {
-    background: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
+.label {
+    @apply text-text text-[14px] font-[600] leading-[14px];
 }
 
-.btn-secondary:hover {
-    background: var(--primary-color);
-    color: white;
+.input {
+    @apply border border-border-white rounded-[6px] shadow-[#fff/0px/1px/2px/0px] text-input-text text-[14px] font-[400] leading-[17px];
 }
 
-/* Form styles */
-.form-group {
-    margin-bottom: 20px;
-}
-
-@media (max-width: 768px) {
-    .form-group {
-        margin-bottom: 16px;
-    }
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-
-.form-input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius-sm);
-    font-size: 1rem;
-    background: var(--card-bg);
-    color: var(--text-color);
-    transition: all 0.3s ease;
-    min-height: var(--touch-target-size);
-}
-
-@media (max-width: 768px) {
-    .form-input {
-        padding: 10px 14px;
-        font-size: 16px; /* Prevent zoom on iOS */
-    }
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
-
-.form-textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
-/* Card styles */
-.card {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 24px;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    .card {
-        padding: 20px;
-        border-radius: 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .card {
-        padding: 16px;
-    }
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-}
-
-/* Grid system */
-.grid {
-    display: grid;
-    gap: 24px;
-}
-
-.grid-2 {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.grid-4 {
-    grid-template-columns: repeat(4, 1fr);
-}
-
-@media (max-width: 1024px) {
-    .grid-4 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .grid-3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .grid-4,
-    .grid-3,
-    .grid-2 {
-        grid-template-columns: 1fr;
-    }
-    .grid {
-        gap: 16px;
-    }
-}
-
-/* Utility classes */
-.text-center {
-    text-align: center;
-}
-
-.text-left {
-    text-align: left;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.mb-0 {
-    margin-bottom: 0;
-}
-.mb-1 {
-    margin-bottom: 8px;
-}
-.mb-2 {
-    margin-bottom: 16px;
-}
-.mb-3 {
-    margin-bottom: 24px;
-}
-.mb-4 {
-    margin-bottom: 32px;
-}
-.mb-5 {
-    margin-bottom: 40px;
-}
-
-.mt-0 {
-    margin-top: 0;
-}
-.mt-1 {
-    margin-top: 8px;
-}
-.mt-2 {
-    margin-top: 16px;
-}
-.mt-3 {
-    margin-top: 24px;
-}
-.mt-4 {
-    margin-top: 32px;
-}
-.mt-5 {
-    margin-top: 40px;
-}
-
-/* Responsive text */
-.h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-.h2 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    line-height: 1.3;
-}
-
-.h3 {
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 1.4;
-}
-
-@media (max-width: 768px) {
-    .h1 {
-        font-size: 2.5rem;
-    }
-    .h2 {
-        font-size: 2rem;
-    }
-    .h3 {
-        font-size: 1.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .h1 {
-        font-size: 2rem;
-    }
-    .h2 {
-        font-size: 1.75rem;
-    }
-    .h3 {
-        font-size: 1.5rem;
-    }
-}
-
-/* Loading spinner */
-.spinner {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #f3f3f3;
-    border-top: 2px solid var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-/* Mobile-first responsive utilities */
-.mobile-only {
-    display: block;
-}
-
-.desktop-only {
-    display: none;
-}
-
-@media (min-width: 769px) {
-    .mobile-only {
-        display: none;
-    }
-    .desktop-only {
-        display: block;
-    }
-}
-
-/* Touch-friendly interactive elements */
-@media (max-width: 768px) {
-    button,
-    .btn,
-    a[role="button"],
-    input[type="submit"],
-    input[type="button"],
-    input[type="reset"] {
-        min-height: var(--touch-target-size);
-        min-width: var(--touch-target-size);
-    }
-
-    /* Увеличиваем расстояние между интерактивными элементами */
-    .touch-friendly-gap {
-        gap: 16px;
-    }
-
-    /* Предотвращаем масштабирование на iOS при фокусе на input */
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="number"],
-    input[type="tel"],
-    input[type="url"],
-    input[type="search"],
-    textarea {
-        font-size: 16px;
-    }
-}
-
-/* Скрываем скролл, но сохраняем функциональность */
-.hide-scrollbar {
-    -ms-overflow-style: none; /* IE и Edge */
-    scrollbar-width: none; /* Firefox */
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none; /* Chrome, Safari и Opera */
-}
-
-/* Анимации */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease-out;
-}
-
-.fade-in-up {
-    animation: fadeInUp 0.5s ease-out;
-}
-
-.fade-in-down {
-    animation: fadeInDown 0.5s ease-out;
-}
-
-/* Доступность */
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-}
-
-/* Фокус для клавиатурной навигации */
-:focus-visible {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
+.items-list {
+    @apply flex flex-col gap-[34px] w-full py-[34px] px-[71px];
 }

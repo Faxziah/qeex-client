@@ -1,220 +1,119 @@
 .contract-item {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    margin-bottom: 16px;
-    transition: all 0.3s ease;
-}
-
-.contract-item:last-child {
-    margin-bottom: 0;
-}
-
-.contract-item:hover {
-    box-shadow: var(--shadow);
-}
-
-.contract-item.expanded {
-    box-shadow: var(--shadow);
-}
-
-.contract-item-header {
+    border-radius: 12px;
+    background-color: var(--item-bg);
+    width: 100%;
+    padding: 17px 19px 17px 29px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 24px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
+    flex-direction: column;
 
-@media (max-width: 768px) {
-    .contract-item-header {
-        padding: 16px 20px;
-        flex-wrap: wrap;
-        gap: 8px;
+    h3 {
+        color: var(--text);
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 24px;
     }
-}
 
-.contract-item-header:hover {
-    background: var(--section-bg);
+    &:hover {
+        background-color: var(--item-bg-hover);
+    }
 }
 
 .contract-item-title {
-    flex: 1;
     display: flex;
     align-items: center;
-    gap: 12px;
-}
 
-@media (max-width: 768px) {
-    .contract-item-title {
-        flex-basis: 100%;
-        justify-content: space-between;
+    .contract-item-logo {
+        width: 40px;
+        height: 40px;
     }
-}
 
-.contract-item-title h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-color);
-    margin: 0;
-}
-
-.contract-item-status {
-    font-size: 0.8rem;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-weight: 500;
-}
-
-.contract-item-status.active {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--success-color);
-}
-
-.contract-item-status.pending {
-    background: rgba(245, 158, 11, 0.1);
-    color: var(--warning-color);
-}
-
-.contract-item-status.failed {
-    background: rgba(239, 68, 68, 0.1);
-    color: var(--error-color);
-}
-
-.contract-item-type {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    margin-right: 16px;
-}
-
-@media (max-width: 768px) {
-    .contract-item-type {
-        margin-right: 0;
+    h3 {
+        padding-left: 26px;
         flex-grow: 1;
     }
-}
 
-.contract-item-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-}
+    .contract-item-status {
+        margin-right: 36px;
+        padding: 6px;
+        border: 1px solid #a0aec0;
+        color: #a0aec0;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 15px;
 
-@media (max-width: 768px) {
-    .contract-item-toggle {
-        width: var(--touch-target-size);
-        height: var(--touch-target-size);
+        &.new {
+            border-color: #3182ce;
+            color: #3182ce;
+        }
+
+        &.paid {
+            border-color: #0065fd;
+            color: #0065fd;
+        }
+
+        &.wait_deployment {
+            border-color: #d69e2e;
+            color: #d69e2e;
+        }
+
+        &.deployed {
+            border-color: var(--button-green-border);
+            color: var(--button-green);
+        }
+
+        &.error {
+            border-color: #e53e3e;
+            color: #e53e3e;
+        }
     }
 }
 
-.toggle-icon {
-    font-size: 1.5rem;
-    line-height: 1;
-    color: var(--primary-color);
-    transition: transform 0.3s ease;
-}
-
-.contract-item.expanded .toggle-icon {
-    transform: rotate(180deg);
-}
-
-.contract-item-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.contract-item.expanded .contract-item-content {
-    max-height: 500px;
-}
-
-.contract-item-details {
-    padding: 0 24px 16px;
-    border-top: 1px solid var(--border-color);
+.contract-item-info {
+    padding-left: 66px;
     padding-top: 16px;
-}
-
-@media (max-width: 768px) {
-    .contract-item-details {
-        padding: 0 20px 16px;
-    }
-}
-
-.contract-item-detail {
-    margin-bottom: 12px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
 
-@media (max-width: 768px) {
-    .contract-item-detail {
-        flex-direction: column;
-        gap: 4px;
+    .contract-item-description {
+        flex-grow: 0.5;
+
+        h4 {
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 24px;
+            padding: 16px 0;
+        }
+
+        h5 {
+            color: var(--link-like);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 18px;
+            padding-bottom: 16px;
+        }
+    }
+
+    .contract-item-preview {
+        color: var(--text);
+        padding-left: 100px;
+        flex-grow: 1;
+        cursor: pointer;
+    }
+
+    .contract-item-tools {
+        padding-right: 36px;
+
+        img {
+            cursor: pointer;
+        }
     }
 }
 
-.contract-item-detail:last-child {
-    margin-bottom: 0;
-}
-
-.detail-label {
-    font-weight: 500;
-    color: var(--text-color);
-    min-width: 150px;
-}
-
-@media (max-width: 768px) {
-    .detail-label {
-        min-width: auto;
-    }
-}
-
-.detail-value {
-    color: var(--text-secondary);
-    word-break: break-all;
-}
-
-.detail-value.address {
-    font-family: monospace;
-    font-size: 0.9rem;
-}
-
-.address-link {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.address-link:hover {
-    color: var(--primary-color-dark);
-    text-decoration: underline;
-}
-
-.contract-item-actions {
-    display: flex;
-    gap: 12px;
-    padding: 16px 24px;
-    border-top: 1px solid var(--border-color);
-}
-
-@media (max-width: 768px) {
-    .contract-item-actions {
-        padding: 16px 20px;
-        flex-direction: column;
-    }
-}
-
-.contract-item-actions .btn {
-    flex: 1;
-}
-
-@media (max-width: 768px) {
-    .contract-item-actions .btn {
-        width: 100%;
-    }
+.nft-modal-image {
+    max-height: 250px;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+    margin-bottom: 15px; /* Add some space below the image */
 }

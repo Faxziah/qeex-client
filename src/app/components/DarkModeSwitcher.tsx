@@ -1,47 +1,50 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import "../styles/dark-mode-switcher.css"
+import React, {useEffect, useState} from "react";
+import Image from "next/image";
 
-const DarkModeSwitcher = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false)
+export default function DarkModeSwitcher() {
+  const [theme, setTheme] = useState<string | null>(null);
 
   useEffect(() => {
-    // Проверяем предпочтения пользователя при загрузке
-    const savedTheme = localStorage.getItem("theme")
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+    const savedTheme = localStorage.getItem("color-theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      setIsDarkMode(true)
-      document.documentElement.setAttribute("data-theme", "dark")
-    } else {
-      setIsDarkMode(false)
-      document.documentElement.setAttribute("data-theme", "light")
-    }
-  }, [])
+    setTheme(savedTheme);
+  }, []);
 
-  const toggleTheme = () => {
-    if (isDarkMode) {
-      document.documentElement.setAttribute("data-theme", "light")
-      localStorage.setItem("theme", "light")
-      setIsDarkMode(false)
-    } else {
-      document.documentElement.setAttribute("data-theme", "dark")
-      localStorage.setItem("theme", "dark")
-      setIsDarkMode(true)
+  useEffect(() => {
+    if (theme) {
+      document.documentElement.classList.toggle("dark", theme === "dark");
+      localStorage.setItem("color-theme", theme);
     }
+  }, [theme]);
+
+  function toggleMode() {
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
   }
 
   return (
     <button
-      className={`dark-mode-switcher ${isDarkMode ? "dark" : "light"}`}
-      onClick={toggleTheme}
-      aria-label={isDarkMode ? "Переключиться на светлую тему" : "Переключиться на темную тему"}
+      id="theme-toggle"
+      type="button"
+      className="text-gray-500 dark:text-gray-400 rounded-lg text-sm cursor-pointer pt-[8px] px-[16px] pb-[8px]"
+      onClick={toggleMode}
     >
-      <div className="switcher-icon">{isDarkMode ? "🌙" : "☀️"}</div>
-      <div className="switcher-circle"></div>
+      <Image
+        src="/svg/light-mode.svg"
+        width={32}
+        height={32}
+        alt="Light mode"
+        className={theme === "dark" ? "" : "hidden"}
+      />
+      <Image
+        src="/svg/dark-mode.svg"
+        width={32}
+        height={32}
+        alt="Dark mode"
+        className={theme === "dark" ? "hidden" : ""}
+      />
     </button>
-  )
+  );
 }
-
-export default DarkModeSwitcher

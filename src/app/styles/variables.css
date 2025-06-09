@@ -1,56 +1,77 @@
 :root {
-    --primary-color: #6366f1;
-    --primary-color-dark: #4f46e5;
-    --secondary-color: #8b5cf6;
-    --success-color: #10b981;
-    --error-color: #ef4444;
-    --warning-color: #f59e0b;
-    --info-color: #3b82f6;
-
-    --text-color: #1f2937;
-    --text-secondary: #4b5563;
-    --bg-color: #ffffff;
-    --card-bg: #ffffff;
-    --section-bg: #f9fafb;
-    --border-color: #e5e7eb;
-
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-    --primary-gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
-    --success-bg: rgba(16, 185, 129, 0.1);
-    --error-bg: rgba(239, 68, 68, 0.1);
-    --warning-bg: rgba(245, 158, 11, 0.1);
-    --info-bg: rgba(59, 130, 246, 0.1);
-
-    /* Размеры для мобильных устройств */
-    --header-height: 70px;
-    --header-height-mobile: 60px;
-    --container-padding: 20px;
-    --container-padding-mobile: 16px;
-    --border-radius: 12px;
-    --border-radius-sm: 8px;
-    --touch-target-size: 44px;
+    --background: #fff;
+    --subnav-bg: #ffefef;
+    --foreground: #171717;
+    --text: #000;
+    --violet: rgb(145, 104, 246);
+    --button-violet: rgb(101, 31, 255);
+    --button-violet-bg: rgb(209, 196, 233);
+    --button-2-bg: rgb(18, 98, 255);
+    --button-2-bg-hover: rgb(0, 70, 255);
+    --button-3-text: rgb(0, 96, 100);
+    --button-3-bg: rgb(132, 255, 255);
+    --button-3-bg-hover: rgb(84, 248, 248);
+    --button-green: rgb(16, 185, 129);
+    --button-green-border: rgb(16, 185, 129);
+    --title: rgb(18, 98, 255);
+    --subtitle: rgb(75, 85, 99);
+    --border-white: rgb(226, 232, 240);
+    --border-white-hover: rgba(0, 0, 0, 0.9);
+    --input-text: rgba(100, 116, 139, 0.7);
+    --item-bg: rgb(241, 245, 249);
+    --item-bg-hover: rgb(237, 237, 237);
+    --link-like: rgb(18, 98, 255);
+    --social-media-bg: rgba(18, 98, 255, 0.1);
+    --overlay: rgba(255, 255, 255, 0.57);
+    --title-underline-before-bg: linear-gradient(152.08deg, rgb(178, 235, 242) 9.051%, rgb(209, 196, 233) 63.775%, rgb(248, 187, 208) 92.794%);
+    --title-underline-after-bg: linear-gradient(152.08deg, rgb(178, 235, 242) -21.38%, rgb(209, 196, 233) 14.898%, rgb(248, 187, 208) 34.135%);
 }
 
-[data-theme="dark"] {
-    --text-color: #f9fafb;
-    --text-secondary: #d1d5db;
-    --bg-color: #111827;
-    --card-bg: #1f2937;
-    --section-bg: #1a1f2b;
-    --border-color: #374151;
-
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+@custom-variant dark (&:where(.dark, .dark *));
+.dark:root {
+    --background: rgb(48, 48, 48);
+    --subnav-bg: rgb(66, 66, 66);
+    --foreground: #ededed;
+    --text: #fff;
+    --violet: rgb(209, 196, 233);
+    --subtitle: rgba(255, 255, 255, 0.65);
+    --border-white: rgba(255, 255, 255, 0.9);
+    --border-white-hover: rgba(255, 255, 255, 0.3);
+    --input-text: rgba(255, 255, 255, 0.9);
+    --item-bg: rgb(66, 66, 66);
+    --item-bg-hover: rgb(83, 83, 83);
+    --overlay: rgba(33, 33, 33, 0.1);
 }
 
-/* Медиа-запросы для различных устройств */
-/* Эти переменные можно использовать в JavaScript */
-:root {
-    --breakpoint-sm: 640px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 1024px;
-    --breakpoint-xl: 1280px;
-    --breakpoint-2xl: 1536px;
+.dark .svg {
+    @apply invert;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-subnav-bg: var(--subnav-bg);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+    --color-violet: var(--violet);
+    --color-text: var(--text);
+    --color-button-violet-bg: var(--button-violet-bg);
+    --color-button-violet: var(--button-violet);
+    --color-button-2-bg: var(--button-2-bg);
+    --color-button-2-bg-hover: var(--button-2-bg-hover);
+    --color-button-3-text: var(--button-3-text);
+    --color-button-3-bg: var(--button-3-bg);
+    --color-button-3-bg-hover: var(--button-3-bg-hover);
+    --color-title: var(--title);
+    --color-subtitle: var(--subtitle);
+    --color-border-white: var(--border-white);
+    --color-border-white-hover: var(--border-white-hover);
+    --color-input-text: var(--input-text);
+    --color-item-bg: var(--item-bg);
+    --color-item-bg-hover: var(--item-bg-hover);
+    --color-link-like: var(--link-like);
+    --color-social-media-bg: var(--social-media-bg);
+    --color-button-green-border: var(--button-green-border);
+    --color-button-green: var(--button-green);
+    --color-overlay: var(--overlay);
 }

@@ -1,18 +1,19 @@
-import "../styles/section-title.css"
+import "@/app/styles/section-title.css";
 
 interface SectionTitleProps {
-  title: string
-  subtitle?: string
-  alignment?: "left" | "center" | "right"
+  title: string;
+  subtitle?: string;
+  background?: string;
 }
 
-const SectionTitle = ({ title, subtitle, alignment = "center" }: SectionTitleProps) => {
+export default function SectionTitle({background, title, subtitle}: SectionTitleProps) {
   return (
-    <div className={`section-title ${alignment}`}>
-      <h2 className="section-title-heading">{title}</h2>
-      {subtitle && <p className="section-title-subtitle">{subtitle}</p>}
-    </div>
-  )
-}
+    <div className={'section-title'}>
+      {background && <div className={'section-title-background'}>{background}</div>}
 
-export default SectionTitle
+      <h2 className={'title-2 section-title-title'}>{title}</h2>
+
+      {subtitle && <h3 className={'subtitle-2 section-title-subtitle'}>{subtitle}</h3>}
+    </div>
+  );
+}
