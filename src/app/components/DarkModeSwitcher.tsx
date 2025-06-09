@@ -1,50 +1,66 @@
-"use client";
+"use client"
 
-import React, {useEffect, useState} from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react"
+import Image from "next/image"
 
 export default function DarkModeSwitcher() {
-  const [theme, setTheme] = useState<string | null>(null);
+  const [theme, setTheme] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("color-theme") ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    setMounted(true)
+    const savedTheme =
+      localStorage.getItem("color-theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
 
-    setTheme(savedTheme);
-  }, []);
+    setTheme(savedTheme)
+  }, [])
 
   useEffect(() => {
     if (theme) {
-      document.documentElement.classList.toggle("dark", theme === "dark");
-      localStorage.setItem("color-theme", theme);
+      document.documentElement.classList.toggle("dark", theme === "dark")
+      localStorage.setItem("color-theme", theme)
     }
-  }, [theme]);
+  }, [theme])
 
   function toggleMode() {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"))
+  }
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 animate-pulse" />
   }
 
   return (
     <button
-      id="theme-toggle"
-      type="button"
-      className="text-gray-500 dark:text-gray-400 rounded-lg text-sm cursor-pointer pt-[8px] px-[16px] pb-[8px]"
       onClick={toggleMode}
+      className="group relative inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white dark:bg-neutral-700 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
-      <Image
-        src="/svg/light-mode.svg"
-        width={32}
-        height={32}
-        alt="Light mode"
-        className={theme === "dark" ? "" : "hidden"}
-      />
-      <Image
-        src="/svg/dark-mode.svg"
-        width={32}
-        height={32}
-        alt="Dark mode"
-        className={theme === "dark" ? "hidden" : ""}
-      />
+      {/* Background gradient on hover */}
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-neutral-700 dark:to-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+
+      {/* Icon container with rotation animation */}
+      <div className="relative z-10 transition-transform duration-300 group-hover:rotate-12">
+        <Image
+          src="/svg/light-mode.svg"
+          width={20}
+          height={20}
+          alt="Light mode"
+          className={`transition-all duration-200 ${theme === "dark" ? "opacity-100" : "opacity-0 absolute"}`}
+        />
+        <Image
+          src="/svg/dark-mode.svg"
+          width={20}
+          height={20}
+          alt="Dark mode"
+          className={`transition-all duration-200 ${theme === "dark" ? "opacity-0 absolute" : "opacity-100"}`}
+        />
+      </div>
+
+      {/* Ripple effect on click */}
+      <div className="absolute inset-0 rounded-xl bg-blue-400 opacity-0 group-active:opacity-20 transition-opacity duration-75" />
     </button>
-  );
+  )
 }

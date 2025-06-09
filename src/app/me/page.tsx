@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div>
       <main>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mt-12">
           <h2 className={'title'}>Мои смарт-контракты</h2>
 
           {!isConnected ?

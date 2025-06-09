@@ -60,10 +60,10 @@ export default function FAQ() {
           {/* FAQ Items */}
           <div className="w-full max-w-4xl space-y-4 md:space-y-6">
             {faqData.map((item, index) => (
-              <div key={index} className="border-b border-gray-300 dark:border-gray-600 pb-4 md:pb-6">
+              <div key={index} className="border-b border-gray-300 dark:border-gray-600">
                 <button
                   onClick={() => toggleItem(index)}
-                  className="w-full flex items-center justify-between text-left py-4 md:py-6 group hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200"
+                  className="w-full flex items-center justify-between text-left pt-4 pb-6 md:py-6 group hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200 cursor-pointer"
                 >
                   <h3 className="text-lg md:text-xl lg:text-2xl font-medium text-gray-900 dark:text-white pr-4">
                     {item.question}

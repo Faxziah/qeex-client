@@ -68,7 +68,7 @@ export default function Header() {
           <nav className="hidden lg:flex items-center space-x-8">
             <div className="relative group z-[9998]" ref={dropdownRef}>
               <button
-                className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 rounded-lg hover:bg-accent/50"
+                className="flex items-center gap-1 px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 rounded-lg hover:bg-accent/50 cursor-pointer"
                 onClick={toggleDropdown}
               >
                 Создание смарт-контракта
