@@ -26,8 +26,8 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
     <body className={`${geistSans.variable} ${geistMono.variable} antialiased px-[30px] md:px-[100px] dark:`}>
     <ModalProvider>
       <Header/>
-      {/*<main>{children}</main>*/}
-      {/*<Footer/>*/}
+      <main>{children}</main>
+      <Footer/>
     </ModalProvider>
     </body>
     </html>
