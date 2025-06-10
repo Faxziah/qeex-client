@@ -1,77 +1,19 @@
 :root {
     --background: #fff;
-    --subnav-bg: #ffefef;
     --foreground: #171717;
-    --text: #000;
-    --violet: rgb(145, 104, 246);
-    --button-violet: rgb(101, 31, 255);
-    --button-violet-bg: rgb(209, 196, 233);
-    --button-2-bg: rgb(18, 98, 255);
-    --button-2-bg-hover: rgb(0, 70, 255);
-    --button-3-text: rgb(0, 96, 100);
-    --button-3-bg: rgb(132, 255, 255);
-    --button-3-bg-hover: rgb(84, 248, 248);
-    --button-green: rgb(16, 185, 129);
-    --button-green-border: rgb(16, 185, 129);
-    --title: rgb(18, 98, 255);
-    --subtitle: rgb(75, 85, 99);
-    --border-white: rgb(226, 232, 240);
-    --border-white-hover: rgba(0, 0, 0, 0.9);
-    --input-text: rgba(100, 116, 139, 0.7);
-    --item-bg: rgb(241, 245, 249);
-    --item-bg-hover: rgb(237, 237, 237);
-    --link-like: rgb(18, 98, 255);
-    --social-media-bg: rgba(18, 98, 255, 0.1);
-    --overlay: rgba(255, 255, 255, 0.57);
-    --title-underline-before-bg: linear-gradient(152.08deg, rgb(178, 235, 242) 9.051%, rgb(209, 196, 233) 63.775%, rgb(248, 187, 208) 92.794%);
-    --title-underline-after-bg: linear-gradient(152.08deg, rgb(178, 235, 242) -21.38%, rgb(209, 196, 233) 14.898%, rgb(248, 187, 208) 34.135%);
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
 .dark:root {
     --background: rgb(48, 48, 48);
-    --subnav-bg: rgb(66, 66, 66);
     --foreground: #ededed;
-    --text: #fff;
-    --violet: rgb(209, 196, 233);
-    --subtitle: rgba(255, 255, 255, 0.65);
-    --border-white: rgba(255, 255, 255, 0.9);
-    --border-white-hover: rgba(255, 255, 255, 0.3);
-    --input-text: rgba(255, 255, 255, 0.9);
-    --item-bg: rgb(66, 66, 66);
-    --item-bg-hover: rgb(83, 83, 83);
-    --overlay: rgba(33, 33, 33, 0.1);
-}
-
-.dark .svg {
-    @apply invert;
 }
 
 @theme inline {
     --color-background: var(--background);
-    --color-subnav-bg: var(--subnav-bg);
     --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
-    --color-violet: var(--violet);
-    --color-text: var(--text);
-    --color-button-violet-bg: var(--button-violet-bg);
-    --color-button-violet: var(--button-violet);
-    --color-button-2-bg: var(--button-2-bg);
-    --color-button-2-bg-hover: var(--button-2-bg-hover);
-    --color-button-3-text: var(--button-3-text);
-    --color-button-3-bg: var(--button-3-bg);
-    --color-button-3-bg-hover: var(--button-3-bg-hover);
-    --color-title: var(--title);
-    --color-subtitle: var(--subtitle);
-    --color-border-white: var(--border-white);
-    --color-border-white-hover: var(--border-white-hover);
-    --color-input-text: var(--input-text);
-    --color-item-bg: var(--item-bg);
-    --color-item-bg-hover: var(--item-bg-hover);
-    --color-link-like: var(--link-like);
-    --color-social-media-bg: var(--social-media-bg);
-    --color-button-green-border: var(--button-green-border);
-    --color-button-green: var(--button-green);
-    --color-overlay: var(--overlay);
+}
+
+.dark .svg {
+    @apply invert;
 }

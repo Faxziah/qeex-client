@@ -110,7 +110,7 @@ export default function CreateNft() {
 
             {/* Subtitle */}
             <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
-              Создайте свой собственный NFT Токен на базе стандарта ERC-721
+              Создай свой собственный NFT Токен на базе стандарта ERC-721
             </p>
           </div>
 
