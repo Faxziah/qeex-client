@@ -34,17 +34,19 @@ export default function ContractsType() {
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 lg:gap-12 mt-12 md:mt-16">
             {/* Простой смарт-контракт */}
             <div
-              className="rounded-2xl md:rounded-3xl lg:rounded-[32px] bg-gradient-to-br from-cyan-200 via-blue-200 to-blue-300 p-8 md:p-10 lg:p-12 xl:p-[50px] flex flex-col items-center text-center xl:col-span-1">
-              <h4 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 lg:mb-8 text-gray-800">
-                Простой смарт-контракт
-              </h4>
-              <p className="text-sm md:text-base lg:text-lg text-gray-700 mb-8 md:mb-12 lg:mb-16 leading-relaxed">
-                Простой смарт-контракт позволяет тебе создать свой смарт-контракт с уникальным текстом, который будет
-                хранится вечно в блокчейне
-              </p>
+              className="rounded-2xl md:rounded-3xl lg:rounded-[32px] bg-gradient-to-br from-cyan-200 via-blue-200 to-blue-300 p-8 md:p-10 lg:p-12 xl:p-[50px] flex flex-col justify-between items-center text-center xl:col-span-1 h-full">
+              <div className="flex flex-col items-center">
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 lg:mb-8 text-gray-800">
+                  Простой смарт-контракт
+                </h4>
+                <p className="text-sm md:text-base lg:text-lg text-gray-700 mb-8 md:mb-12 lg:mb-16 leading-relaxed">
+                  Простой смарт-контракт позволяет тебе создать свой смарт-контракт с уникальным текстом, который будет
+                  хранится вечно в блокчейне
+                </p>
+              </div>
               <Link
                 href="/create/simple-contract"
-                className="inline-block px-6 md:px-8 py-3 md:py-4 border-2 border-white/30 rounded-full text-gray-800 font-medium hover:bg-white/20 transition-all duration-300 text-sm md:text-base"
+                className="inline-block px-6 md:px-8 py-3 md:py-4 border-2 border-white/30 rounded-full text-gray-800 font-medium hover:bg-white/20 transition-all duration-300 text-sm md:text-base mt-auto"
               >
                 Перейти к созданию
               </Link>
@@ -52,16 +54,18 @@ export default function ContractsType() {
 
             {/* Криптовалюта */}
             <div
-              className="rounded-2xl md:rounded-3xl lg:rounded-[32px] bg-gradient-to-br from-pink-200 via-purple-200 to-purple-300 p-8 md:p-10 lg:p-12 xl:p-[50px] flex flex-col items-center text-center">
-              <h4 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 lg:mb-8 text-gray-800">
-                Криптовалюта
-              </h4>
-              <p className="text-sm md:text-base lg:text-lg text-gray-700 mb-8 md:mb-12 lg:mb-16 leading-relaxed">
-                Криптовалюта, или ERC-20 токен, позволяет тебе создать собственную валюту. Цена на нее может взлететь
-              </p>
+              className="rounded-2xl md:rounded-3xl lg:rounded-[32px] bg-gradient-to-br from-pink-200 via-purple-200 to-purple-300 p-8 md:p-10 lg:p-12 xl:p-[50px] flex flex-col justify-between items-center text-center h-full">
+              <div className="flex flex-col items-center">
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 lg:mb-8 text-gray-800">
+                  Криптовалюта
+                </h4>
+                <p className="text-sm md:text-base lg:text-lg text-gray-700 mb-8 md:mb-12 lg:mb-16 leading-relaxed">
+                  Криптовалюта, или ERC-20 токен, позволяет тебе создать собственную валюту. Цена на нее может взлететь
+                </p>
+              </div>
               <Link
                 href="/create/cryptocurrency"
-                className="inline-block px-6 md:px-8 py-3 md:py-4 border-2 border-white/30 rounded-full text-gray-800 font-medium hover:bg-white/20 transition-all duration-300 text-sm md:text-base"
+                className="inline-block px-6 md:px-8 py-3 md:py-4 border-2 border-white/30 rounded-full text-gray-800 font-medium hover:bg-white/20 transition-all duration-300 text-sm md:text-base mt-auto"
               >
                 Перейти к созданию
               </Link>
@@ -69,17 +73,19 @@ export default function ContractsType() {
 
             {/* NFT-токен */}
             <div
-              className="rounded-2xl md:rounded-3xl lg:rounded-[32px] bg-gradient-to-br from-cyan-200 via-blue-200 to-purple-200 p-8 md:p-10 lg:p-12 xl:p-[50px] flex flex-col items-center text-center lg:col-span-2 xl:col-span-1">
-              <h4 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 lg:mb-8 text-gray-800">
-                NFT-токен
-              </h4>
-              <p className="text-sm md:text-base lg:text-lg text-gray-700 mb-8 md:mb-12 lg:mb-16 leading-relaxed">
-                NFT-токен, или ERC-721, позволяет тебе создать уникальный и неповторимый токен. Возможно, даже
-                произведение искусства
-              </p>
+              className="rounded-2xl md:rounded-3xl lg:rounded-[32px] bg-gradient-to-br from-cyan-200 via-blue-200 to-purple-200 p-8 md:p-10 lg:p-12 xl:p-[50px] flex flex-col justify-between items-center text-center lg:col-span-2 xl:col-span-1 h-full">
+              <div className="flex flex-col items-center">
+                <h4 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 lg:mb-8 text-gray-800">
+                  NFT-токен
+                </h4>
+                <p className="text-sm md:text-base lg:text-lg text-gray-700 mb-8 md:mb-12 lg:mb-16 leading-relaxed">
+                  NFT-токен, или ERC-721, позволяет тебе создать уникальный и неповторимый токен. Возможно, даже
+                  произведение искусства
+                </p>
+              </div>
               <Link
                 href="/create/nft"
-                className="inline-block px-6 md:px-8 py-3 md:py-4 border-2 border-white/30 rounded-full text-gray-800 font-medium hover:bg-white/20 transition-all duration-300 text-sm md:text-base"
+                className="inline-block px-6 md:px-8 py-3 md:py-4 border-2 border-white/30 rounded-full text-gray-800 font-medium hover:bg-white/20 transition-all duration-300 text-sm md:text-base mt-auto"
               >
                 Перейти к созданию
               </Link>
