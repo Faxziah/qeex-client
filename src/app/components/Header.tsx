@@ -58,10 +58,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-10 h-10 lg:w-12 lg:h-12 relative">
-              <Image src="/logo.png" width={48} height={48} alt="Logo" className="w-full h-full object-contain" />
-            </div>
-            <div className="text-lg lg:text-2xl font-medium text-foreground whitespace-nowrap">Qeex</div>
+            <div className="text-4xl font-medium text-foreground whitespace-nowrap">Qeex</div>
           </Link>
 
           {/* Desktop Navigation */}
