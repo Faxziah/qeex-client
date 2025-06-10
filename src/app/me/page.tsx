@@ -2,11 +2,9 @@
 
 import {useEffect, useState} from "react"
 import ContractItem from "@/app/me/components/ContractItem"
-import Link from "next/link"
 import {ContractStatus, type IContract} from "@/app/interface/IContract"
 import {_getUserContracts} from "@/app/me/services/_getUserContracts"
 import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection"
-import ConnectButton from "@/app/components/ConnectButton"
 import CreateContractButtons from "@/app/components/CreateContractButtons";
 
 export default function Home() {
@@ -84,7 +82,9 @@ export default function Home() {
                   <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">
                     Для загрузки смарт-контрактов нужно подключить кошелек
                   </p>
-                  <ConnectButton/>
+                  <div className={'flex justify-center'}>
+                  <appkit-button label={'Подключить кошелек'} loadingLabel={'Подключение'}/>
+                  </div>
                 </div>
               )}
 

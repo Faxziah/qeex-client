@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import ConnectButton from "@/app/components/ConnectButton"
 import CreateContractButtons from "@/app/components/CreateContractButtons";
 
 export default function Banner() {
@@ -45,7 +44,7 @@ export default function Banner() {
               Подключите кошелек Metamask
             </h3>
             <div className="text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
-              <ConnectButton/>
+              <appkit-button label={'Подключить кошелек'} loadingLabel={'Подключение'}/>
             </div>
           </div>
 

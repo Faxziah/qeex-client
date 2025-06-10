@@ -5,6 +5,9 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import {ModalProvider} from "@/app/context/ModalContext";
 
+import { headers } from "next/headers";
+import ContextProvider from "@/app/context";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -20,7 +23,10 @@ export const metadata: Metadata = {
   description: "Qeex: смарт-контракты без кода",
 };
 
-export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
+export default async function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
+  const headersObj = await headers()
+  const cookies = headersObj.get('cookie')
+
   return (
     <html lang="en" suppressHydrationWarning>
     <body
@@ -38,11 +44,13 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
             `,
       }}
     />
-    <ModalProvider>
-      <Header/>
-      <main>{children}</main>
-      <Footer/>
-    </ModalProvider>
+    <ContextProvider cookies={cookies}>
+      <ModalProvider>
+        <Header/>
+        <main>{children}</main>
+        <Footer/>
+      </ModalProvider>
+    </ContextProvider>
     </body>
     </html>
   );
