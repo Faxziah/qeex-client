@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Qeex: ваш первый шаг в blockchain",
+  title: "Qeex: твой первый шаг в блокчейн",
   description: "Qeex: смарт-контракты без кода",
 };
 
