@@ -15,7 +15,7 @@ export default function Footer() {
               <ul className="flex flex-col gap-2 md:gap-3">
                 <li>
                   <Link
-                    href="/#contracts-type-container"
+                    href="/#contracts-type"
                     className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 pl-4 block"
                   >
                     Виды смарт-контрактов
@@ -23,7 +23,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
-                    href="/#faq-container"
+                    href="/#faq"
                     className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200 pl-4 block"
                   >
                     FAQ

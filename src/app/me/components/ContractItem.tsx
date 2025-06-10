@@ -136,7 +136,7 @@ export default function ContractItem({ contract }: { contract: IContract }) {
   }
 
   return (
-    <div className="group bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 transition-all duration-200 hover:shadow-lg hover:border-neutral-300 dark:hover:border-neutral-600 hover:-translate-y-1">
+    <div className="group bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 transition-all duration-200 hover:shadow-lg hover:border-neutral-300 dark:hover:border-neutral-600 hover:-translate-y-1 text-left">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-4">
@@ -216,7 +216,7 @@ export default function ContractItem({ contract }: { contract: IContract }) {
       <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-700">
         <button
           onClick={handleContractAction}
-          className="group/btn w-full flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-700/50 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all duration-200"
+          className="group/btn w-full flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-700/50 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-all duration-200 cursor-pointer"
         >
           <span className="text-sm text-neutral-700 dark:text-neutral-300 group-hover/btn:text-neutral-900 dark:group-hover/btn:text-white">
             {getActionText()}

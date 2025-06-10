@@ -61,7 +61,7 @@ export default function Header() {
             <div className="w-10 h-10 lg:w-12 lg:h-12 relative">
               <Image src="/logo.png" width={48} height={48} alt="Logo" className="w-full h-full object-contain" />
             </div>
-            <div className="text-lg lg:text-2xl font-medium text-foreground whitespace-nowrap">SWAP MASTER</div>
+            <div className="text-lg lg:text-2xl font-medium text-foreground whitespace-nowrap">Qeex</div>
           </Link>
 
           {/* Desktop Navigation */}

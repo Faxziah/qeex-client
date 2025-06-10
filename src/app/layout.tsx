@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Swap master: create own smart-contract",
-  description: "Swap master: create own smart-contract",
+  title: "Qeex: ваш первый шаг в blockchain",
+  description: "Qeex: смарт-контракты без кода",
 };
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {

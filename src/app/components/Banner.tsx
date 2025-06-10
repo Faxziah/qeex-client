@@ -4,21 +4,22 @@ import ConnectButton from "@/app/components/ConnectButton"
 
 export default function Banner() {
   return (
-    <div className="w-full pt-8 pb-0">
+    <div className="w-full py-12 md:py-16 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12 md:gap-16 lg:gap-24">
         {/* Hero Section */}
         <div className="flex flex-col lg:flex-row gap-8 md:gap-12 items-center">
           {/* Text Content */}
           <div className="w-full lg:w-1/2 flex flex-col gap-6 md:gap-8">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
-              Создай свой первый смарт-контракт в блокчейн с{" "}
+              Твой первый шаг в блокчейн с{" "}
               <span className="bg-gradient-to-r from-[#B2EBF2] via-[#D1C4E9] to-[#F8BBD0] text-transparent bg-clip-text">
-                SWAP MASTER
+                QEEX
               </span>
             </h1>
 
+
             <h2 className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300">
-              Твой уникальный смарт-контракт будет сохранен в блокчейн навечно
+              Смарт-контракты без кода
             </h2>
 
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-2">
@@ -29,7 +30,7 @@ export default function Banner() {
                 Создать смарт-контракт
               </Link>
               <Link
-                href="/#contracts-type-container"
+                href="/#contracts-type"
                 className="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-full text-center text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
               >
                 Виды смарт-контрактов
@@ -39,7 +40,7 @@ export default function Banner() {
 
           {/* Banner Image */}
           <div className="w-full lg:w-1/2 flex justify-center relative">
-            <div className="w-full h-[300px] md:h-[400px] lg:h-[520px] relative overflow-hidden">
+            <div className="w-full h-[300px] md:h-[400px] lg:h-[400px] relative overflow-hidden">
               <Image src="/images/banner.png" fill alt="Banner" className="object-contain scale-150 z-0" priority />
             </div>
           </div>

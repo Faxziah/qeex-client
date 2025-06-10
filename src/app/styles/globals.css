@@ -54,7 +54,3 @@ body {
 .input {
     @apply border border-border-white rounded-[6px] shadow-[#fff/0px/1px/2px/0px] text-input-text text-[14px] font-[400] leading-[17px];
 }
-
-.items-list {
-    @apply flex flex-col gap-[34px] w-full py-[34px] px-[71px];
-}

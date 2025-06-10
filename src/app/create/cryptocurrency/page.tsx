@@ -84,7 +84,7 @@ export default function CreateCryptocurrency() {
   const isFormValid = formData.name && formData.symbol && formData.totalSupply
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-300">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <div className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-cyan-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 py-16 sm:py-24">
         {/* Background Pattern */}

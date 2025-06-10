@@ -5,7 +5,7 @@ import FAQ from "@/app/components/FAQ";
 
 export default function Home() {
   return (
-    <div className={'container'}>
+    <div>
       <Banner/>
       <Features/>
       <ContractsType/>

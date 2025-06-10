@@ -86,20 +86,25 @@ export default function CreateNft() {
     formData.baseUri && (formData.baseUri.startsWith("ipfs://") || formData.baseUri.startsWith("https://"))
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-300">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 py-16 sm:py-24">
+      <div
+        className="relative overflow-hidden bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 py-16 sm:py-24">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20 dark:opacity-10">
-          <div className="absolute top-0 left-1/4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-0 right-1/4 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-1/3 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+          <div
+            className="absolute top-0 left-1/4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+          <div
+            className="absolute top-0 right-1/4 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+          <div
+            className="absolute -bottom-8 left-1/3 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             {/* Main Title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 dark:from-purple-400 dark:via-pink-300 dark:to-indigo-400 bg-clip-text text-transparent mb-6">
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 dark:from-purple-400 dark:via-pink-300 dark:to-indigo-400 bg-clip-text text-transparent mb-6">
               Создайте NFT Токен
             </h1>
 
@@ -110,11 +115,13 @@ export default function CreateNft() {
           </div>
 
           {/* Main Form Card */}
-          <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-700 p-8 sm:p-10">
+          <div
+            className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-700 p-8 sm:p-10">
             <form onSubmit={createNft} className="space-y-8">
               {/* Form Header */}
               <div className="flex items-center space-x-3 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+                <div
+                  className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
                   <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -241,7 +248,7 @@ export default function CreateNft() {
                     {formData.baseUri && isValidUri && (
                       <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
                         <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"/>
                         </svg>
                       </div>
                     )}
@@ -261,7 +268,8 @@ export default function CreateNft() {
 
               {/* NFT Preview */}
               {isFormValid && isValidUri && (
-                <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
+                <div
+                  className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
                   <h4 className="text-lg font-semibold text-purple-900 dark:text-purple-300 mb-4">
                     Предварительный просмотр NFT коллекции
                   </h4>
@@ -283,7 +291,8 @@ export default function CreateNft() {
                   </div>
 
                   {/* URI Preview */}
-                  <div className="mt-4 p-3 bg-white dark:bg-neutral-700 rounded-lg border border-purple-200 dark:border-purple-700">
+                  <div
+                    className="mt-4 p-3 bg-white dark:bg-neutral-700 rounded-lg border border-purple-200 dark:border-purple-700">
                     <div className="text-sm font-medium text-purple-900 dark:text-purple-300 mb-1">Базовый URI:</div>
                     <div className="text-xs text-purple-700 dark:text-purple-400 font-mono break-all">
                       {formData.baseUri}
@@ -293,7 +302,8 @@ export default function CreateNft() {
               )}
 
               {/* URI Info Card */}
-              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+              <div
+                className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
                 <div className="flex items-start space-x-3">
                   <svg
                     className="w-6 h-6 text-blue-600 dark:text-blue-400 mt-0.5"
@@ -333,7 +343,8 @@ export default function CreateNft() {
 
               {/* Connection Warning */}
               {!isConnected && (
-                <div className="flex items-center space-x-3 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
+                <div
+                  className="flex items-center space-x-3 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
                   <svg
                     className="w-5 h-5 text-amber-600 dark:text-amber-400"
                     fill="none"
@@ -385,33 +396,36 @@ export default function CreateNft() {
 
       {/* Transaction Fee Section */}
       {transactionFee && (
-        <TransactionFee transactionFee={transactionFee} />
+        <TransactionFee transactionFee={transactionFee}/>
       )}
 
       <style jsx>{`
           @keyframes blob {
               0% {
                   transform: translate(0px, 0px) scale(1);
+              }
+              33% {
+                  transform: translate(30px, -50px) scale(1.1);
+              }
+              66% {
+                  transform: translate(-20px, 20px) scale(0.9);
+              }
+              100% {
+                  transform: translate(0px, 0px) scale(1);
+              }
           }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
+
+          .animate-blob {
+              animation: blob 7s infinite;
           }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
+
+          .animation-delay-2000 {
+              animation-delay: 2s;
           }
-          100% {
-            transform: translate(0px, 0px) scale(1);
+
+          .animation-delay-4000 {
+              animation-delay: 4s;
           }
-        }
-        .animate-blob {
-          animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-          animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
       `}</style>
     </div>
   )

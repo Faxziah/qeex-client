@@ -33,7 +33,7 @@ export default function FAQ() {
   }
 
   return (
-    <div className="w-full py-12 md:py-16 lg:py-20">
+    <div className="w-full py-12 md:py-16 lg:py-20" id={'faq'}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center">
           {/* Responsive Section Title */}
@@ -46,8 +46,9 @@ export default function FAQ() {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 pt-4 md:pt-6 lg:pt-24">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-gray-900 dark:text-white">
+            <div className="relative z-10 pt-0">
+              <h2
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 xs:mb-6 text-center text-gray-900 dark:text-white">
                 FAQ
               </h2>
               <div className="flex items-center justify-center gap-2 mb-6 md:mb-8">
