@@ -26,6 +26,18 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
     <body
       className={`${geistSans} ${geistMono.variable} antialiased bg-background text-foreground font-sans px-[30px] md:px-[100px] bg-background`}
     >
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+          const storedTheme = localStorage.getItem('color-theme');
+          if (storedTheme === 'dark' || (storedTheme === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+            `,
+      }}
+    />
     <ModalProvider>
       <Header/>
       <main>{children}</main>

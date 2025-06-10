@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import {useEffect, useState} from "react"
 import Image from "next/image"
 
 export default function DarkModeSwitcher() {
@@ -29,7 +29,7 @@ export default function DarkModeSwitcher() {
 
   // Prevent hydration mismatch
   if (!mounted) {
-    return <div className="w-12 h-12 rounded-xl bg-gray-100 dark:bg-gray-800 animate-pulse" />
+    return <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 dark:bg-neutral-700 dark:border-gray-700  animate-pulse"/>
   }
 
   return (
@@ -39,7 +39,8 @@ export default function DarkModeSwitcher() {
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
       {/* Background gradient on hover */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-neutral-700 dark:to-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+      <div
+        className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-neutral-700 dark:to-neutral-600 opacity-0 group-hover:opacity-100 transition-opacity duration-200"/>
 
       {/* Icon container with rotation animation */}
       <div className="relative z-10 transition-transform duration-300 group-hover:rotate-12">
@@ -60,7 +61,8 @@ export default function DarkModeSwitcher() {
       </div>
 
       {/* Ripple effect on click */}
-      <div className="absolute inset-0 rounded-xl bg-blue-400 opacity-0 group-active:opacity-20 transition-opacity duration-75" />
+      <div
+        className="absolute inset-0 rounded-xl bg-blue-400 opacity-0 group-active:opacity-20 transition-opacity duration-75"/>
     </button>
   )
 }
