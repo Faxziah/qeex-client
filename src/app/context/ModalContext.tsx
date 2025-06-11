@@ -4,7 +4,7 @@ import {createContext, useContext, useState, ReactNode} from "react";
 import Modal from "@/app/components/Modal";
 import {voidFunction} from "@/app/helpers/voidFunction";
 
-interface ModalContextProps {
+export interface ModalContextProps {
   showModal: (
     title: string,
     content?: ReactNode,

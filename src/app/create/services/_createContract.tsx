@@ -4,7 +4,7 @@ import {BaseContract, ethers, TransactionResponse} from "ethers";
 import {EVERLASTING_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 import {CREATE_CONTRACT_URL} from "@/app/constants/backendUrl";
 import {BASE_FEE_IN_USD, MAIN_ADDRESS_TO_GET_PAYMENT} from "@/app/constants/constants";
-import {getEthAmountForUsd} from "@/app/helpers/coingecko";
+import {getWeiAmountForOneUsd} from "@/app/helpers/coingecko";
 import {ContractType} from "@/app/interface/IContract";
 
 export async function _createContract(contractText: string) {
@@ -17,9 +17,9 @@ export async function _createContract(contractText: string) {
   const signer = await provider.getSigner();
   const walletAddress = await signer.getAddress();
 
-  const ethAmountRounded: number | null = await getEthAmountForUsd(BASE_FEE_IN_USD);
+  const weiAmountForOneUsd: bigint | null = await getWeiAmountForOneUsd(BASE_FEE_IN_USD);
 
-  if (!ethAmountRounded) {
+  if (weiAmountForOneUsd === null) {
     console.log("Некорректная цена ETH");
     return null;
   }
@@ -29,7 +29,7 @@ export async function _createContract(contractText: string) {
   try {
     sendEthTx = await signer.sendTransaction({
       to: MAIN_ADDRESS_TO_GET_PAYMENT,
-      value: ethers.parseEther(String(ethAmountRounded)) // eth на 1$
+      value: weiAmountForOneUsd // wei на 1$
     });
   } catch (e: unknown) {
     console.log(e);

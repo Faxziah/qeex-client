@@ -1,80 +1,80 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { _createContract } from "@/app/create/services/_createContract"
-import { _getCreateContractInfo } from "@/app/create/services/_getCreateContractInfo"
-import { useMetaMaskConnection } from "@/app/hooks/useMetaMaskConnection"
-import { useModal } from "@/app/context/ModalContext"
-import type { TransactionFeeInfo } from "@/app/interface/IContract"
-import TransactionFee from "@/app/create/components/TransactionFee"
+import type React from "react";
+import { useState } from "react";
+import { _createContract } from "@/app/create/services/_createContract";
+import { _getCreateContractInfo } from "@/app/create/services/_getCreateContractInfo";
+import { useMetaMaskConnection } from "@/app/hooks/useMetaMaskConnection";
+import { useModal } from "@/app/context/ModalContext";
+import type { TransactionFeeInfo } from "@/app/interface/IContract";
+import TransactionFee from "@/app/create/components/TransactionFee";
 
 export default function Home() {
-  const { isConnected } = useMetaMaskConnection()
-  const { showModal, showModalError } = useModal()
-  const [transactionFee, setTransactionFee] = useState<TransactionFeeInfo | undefined>(undefined)
-  const [isLoading, setIsLoading] = useState(false)
-  const [contractText, setContractText] = useState("")
+  const {isConnected} = useMetaMaskConnection();
+  const { showModal, showModalError } = useModal();
+  const [transactionFee, setTransactionFee] = useState<TransactionFeeInfo | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const [contractText, setContractText] = useState("");
 
   async function createContract(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!isConnected) {
-      showModal("Необходимо подключить кошелек")
-      return
+      showModal("Необходимо подключить кошелек");
+      return;
     }
 
-    const formData = new FormData(event.currentTarget)
-    let contractText = formData.get("contract_text") as string
-    contractText = contractText.trim()
+    const formData = new FormData(event.currentTarget);
+    let contractText = formData.get("contract_text") as string;
+    contractText = contractText.trim();
 
     if (!contractText) {
-      showModal("Необходимо ввести текст")
-      return
+      showModal("Необходимо ввести текст");
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await _createContract(contractText)
+      await _createContract(contractText);
     } catch (e: unknown) {
       if (e instanceof Error) {
-        showModalError(e.message)
+        showModalError(e.message);
       } else {
-        showModalError("Неизвестная ошибка")
+        showModalError("Неизвестная ошибка");
       }
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
   async function getCreateContractInfo(event: React.FocusEvent<HTMLTextAreaElement>) {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!isConnected) {
-      return
+      return;
     }
 
-    const contractText = event.target.value.trim()
+    const contractText = event.target.value.trim();
 
     if (!contractText) {
-      return
+      return;
     }
 
     try {
-      const _transactionFee: TransactionFeeInfo | undefined = await _getCreateContractInfo(contractText)
-      setTransactionFee(_transactionFee)
+      const _transactionFee: TransactionFeeInfo | undefined = await _getCreateContractInfo(contractText);
+      setTransactionFee(_transactionFee);
     } catch (e: unknown) {
       if (e instanceof Error) {
-        showModalError(e.message)
+        showModalError(e.message);
       } else {
-        showModalError("Неизвестная ошибка")
+        showModalError("Неизвестная ошибка");
       }
     }
   }
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setContractText(e.target.value)
-  }
+    setContractText(e.target.value);
+  };
 
   return (
     <div className="min-h-screen">
@@ -234,5 +234,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
