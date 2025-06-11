@@ -1,4 +1,4 @@
-import {ContractStatus, ContractType} from "@/app/interface/IContract";
+import {ContractStatus, ContractsType} from "@/app/interface/IContract";
 
 export interface CreateContractDto {
   contractAddress: string;
@@ -6,6 +6,6 @@ export interface CreateContractDto {
   chainId: number;
   blockNumber: number;
   paymentTransactionHash: string;
-  contractTypeId: ContractType;
+  contractTypeId: ContractsType;
   status?: ContractStatus;
 }

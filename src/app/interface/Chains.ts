@@ -2,6 +2,7 @@ export interface IChain {
   chainId: number;
   name: string;
   explorerUrl?: string;
+  explorerApiUrl?: string;
   alchemyNetworkName?: string;
 }
 
@@ -21,42 +22,49 @@ export const SUPPORTED_CHAINS: IChain[] = [
     chainId: ChainsId.ETHEREUM_MAINNET,
     name: "Ethereum Mainnet",
     explorerUrl: "https://etherscan.io/",
+    explorerApiUrl: "https://api.etherscan.io/api",
     alchemyNetworkName: "homestead",
   },
   {
     chainId: ChainsId.SEPOLIA,
     name: "Sepolia Testnet",
     explorerUrl: "https://sepolia.etherscan.io/",
+    explorerApiUrl: "https://api-sepolia.etherscan.io/api",
     alchemyNetworkName: "sepolia",
   },
   {
     chainId: ChainsId.GOERLI,
     name: "Goerli Testnet",
     explorerUrl: "https://goerli.etherscan.io/",
+    explorerApiUrl: "https://api-goerli.etherscan.io/api",
     alchemyNetworkName: "goerli",
   },
   {
     chainId: ChainsId.ARBITRUM_ONE,
     name: "Arbitrum One",
     explorerUrl: "https://arbiscan.io/",
+    explorerApiUrl: "https://api.arbiscan.io/api",
     alchemyNetworkName: "arbitrum",
   },
   {
     chainId: ChainsId.ARBITRUM_GOERLI,
     name: "Arbitrum Goerli",
     explorerUrl: "https://goerli.arbiscan.io/",
+    explorerApiUrl: "https://api-goerli.arbiscan.io/api",
     alchemyNetworkName: "arbitrum-goerli",
   },
   {
     chainId: ChainsId.POLYGON_MAINNET,
     name: "Polygon Mainnet",
     explorerUrl: "https://polygonscan.com/",
+    explorerApiUrl: "https://api.polygonscan.com/api",
     alchemyNetworkName: "matic",
   },
   {
     chainId: ChainsId.POLYGON_MUMBAI,
     name: "Polygon Mumbai",
     explorerUrl: "https://mumbai.polygonscan.com/",
+    explorerApiUrl: "https://api-testnet.polygonscan.com/api",
     alchemyNetworkName: "maticmum",
   },
   {

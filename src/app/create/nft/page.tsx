@@ -1,89 +1,89 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { useMetaMaskConnection } from "@/app/hooks/useMetaMaskConnection"
-import { useModal } from "@/app/context/ModalContext"
-import type { TransactionFeeInfo, NftFormData } from "@/app/interface/IContract"
-import TransactionFee from "@/app/create/components/TransactionFee"
-import { _createNft } from "@/app/create/services/_createNft"
-import { _getCreateNftInfo } from "@/app/create/services/_getCreateNftInfo"
+import type React from "react";
+import {useState} from "react";
+import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection";
+import {useModal} from "@/app/context/ModalContext";
+import type {TransactionFeeInfo, NftFormData} from "@/app/interface/IContract";
+import TransactionFee from "@/app/create/components/TransactionFee";
+import {_createNft} from "@/app/create/services/_createNft";
+import {_getCreateNftInfo} from "@/app/create/services/_getCreateNftInfo";
 
 export default function CreateNft() {
-  const { isConnected } = useMetaMaskConnection()
-  const { showModal, showModalError } = useModal()
-  const [transactionFee, setTransactionFee] = useState<TransactionFeeInfo | undefined>(undefined)
-  const [isLoading, setIsLoading] = useState(false)
+  const {isConnected} = useMetaMaskConnection();
+  const {showModal, showModalError} = useModal();
+  const [transactionFee, setTransactionFee] = useState<TransactionFeeInfo | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<NftFormData>({
     name: "",
     symbol: "",
     baseUri: "",
-  })
+  });
 
   async function createNft(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!isConnected) {
-      showModal("Необходимо подключить кошелек")
-      return
+      showModal("Необходимо подключить кошелек");
+      return;
     }
 
     if (!formData.name || !formData.symbol || !formData.baseUri) {
-      showModal("Необходимо заполнить все поля")
-      return
+      showModal("Необходимо заполнить все поля");
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await _createNft(formData)
+      await _createNft(formData);
     } catch (e: unknown) {
       if (e instanceof Error) {
-        showModalError(e.message)
+        showModalError(e.message);
       } else {
-        showModalError("Неизвестная ошибка")
+        showModalError("Неизвестная ошибка");
       }
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
   async function getCreateContractInfo() {
     if (!isConnected) {
-      return
+      return;
     }
 
     if (!formData.name || !formData.symbol || !formData.baseUri) {
-      return
+      return;
     }
 
     try {
-      const _transactionFee = await _getCreateNftInfo(formData)
-      setTransactionFee(_transactionFee)
+      const _transactionFee = await _getCreateNftInfo(formData);
+      setTransactionFee(_transactionFee);
     } catch (e: unknown) {
       if (e instanceof Error) {
-        showModalError(e.message)
-        console.log("error", e.message)
+        showModalError(e.message);
+        console.log("error", e.message);
       } else {
-        showModalError("Неизвестная ошибка")
+        showModalError("Неизвестная ошибка");
       }
     }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+    const {name, value} = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleInputBlur = () => {
-    getCreateContractInfo()
-  }
+    getCreateContractInfo();
+  };
 
-  const isFormValid = formData.name && formData.symbol && formData.baseUri
+  const isFormValid = formData.name && formData.symbol && formData.baseUri;
   const isValidUri =
-    formData.baseUri && (formData.baseUri.startsWith("ipfs://") || formData.baseUri.startsWith("https://"))
+    formData.baseUri && (formData.baseUri.startsWith("ipfs://") || formData.baseUri.startsWith("https://"));
 
   return (
     <div className="min-h-screen">
@@ -428,5 +428,5 @@ export default function CreateNft() {
           }
       `}</style>
     </div>
-  )
+  );
 }

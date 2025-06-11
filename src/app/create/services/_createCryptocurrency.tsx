@@ -1,11 +1,19 @@
 'use client';
 
-import {BaseContract, ethers, TransactionResponse} from "ethers";
+import {
+  BaseContract,
+  ContractTransactionReceipt,
+  ContractTransactionResponse,
+  ethers,
+  TransactionResponse
+} from "ethers";
 import {TOKEN_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 import {CREATE_CONTRACT_URL} from "@/app/constants/backendUrl";
 import {BASE_FEE_IN_USD, MAIN_ADDRESS_TO_GET_PAYMENT} from "@/app/constants/constants";
 import {getWeiAmountForOneUsd} from "@/app/helpers/coingecko";
-import {CryptocurrencyFormData, ContractType} from "@/app/interface/IContract";
+import {CryptocurrencyFormData, ContractsType} from "@/app/interface/IContract";
+import { verify } from "./verifyContract";
+import {ChainsId} from "@/app/interface/Chains";
 
 export async function _createCryptocurrency(info: CryptocurrencyFormData) {
   if (!window.ethereum) {
@@ -42,14 +50,13 @@ export async function _createCryptocurrency(info: CryptocurrencyFormData) {
   const {abi: contractAbi, bytecode: contractBytecode} = await erc20ContractAbi.json();
 
   const contractFactory = new ethers.ContractFactory(contractAbi, contractBytecode, signer);
+  const totalSupplyInWei = ethers.parseUnits(info.totalSupply, 18);
 
   console.log('Before creating contract');
 
   let contract: BaseContract;
 
   try {
-    // Конвертируем totalSupply в wei (18 decimals)
-    const totalSupplyInWei = ethers.parseUnits(info.totalSupply, 18);
     contract = await contractFactory.deploy(info.name, info.symbol, totalSupplyInWei);
   } catch (e: unknown) {
     return;
@@ -61,27 +68,50 @@ export async function _createCryptocurrency(info: CryptocurrencyFormData) {
 
   console.log('After deploying contract');
 
-  const contractDeployTx = contract.deploymentTransaction();
+  const contractDeployTx: ContractTransactionResponse | null = contract.deploymentTransaction();
 
-  let blockNumber;
-  if (contractDeployTx != null) {
-    const contractDeployReceipt = await contractDeployTx.wait();
-
-    if (contractDeployReceipt != null) {
-      blockNumber = contractDeployReceipt.blockNumber;
-    }
+  if (contractDeployTx === null) {
+    console.log('Ошибка при деплое контракта');
+    return;
   }
 
-  const network = await provider.getNetwork();
-  const chainId = network.chainId;
+  const contractDeployReceipt: ContractTransactionReceipt | null = await contractDeployTx.wait();
+
+  if (contractDeployReceipt === null) {
+    console.log('Ошибка при деплое контракта');
+    return;
+  }
+
+  const chain = await provider.getNetwork();
+  const chainId = Number(chain.chainId);
+
+  if (chainId !== ChainsId.HARDHAT_LOCAL) {
+    const constructorArgs = [
+      { type: "string", value: info.name },
+      { type: "string", value: info.symbol },
+      { type: "uint256", value: totalSupplyInWei }
+    ];
+
+    try {
+      const verifyResult = await verify({
+        contractTypeId: ContractsType.ERC20,
+        contractAddress: String(contract.target),
+        chainId: chainId,
+        constructorArgs: constructorArgs,
+      });
+      console.log("Etherscan verify result", verifyResult);
+    } catch (e) {
+      console.warn("Etherscan verification failed", e);
+    }
+  }
 
   const data = {
     contractAddress: contract.target,
     walletAddress: walletAddress,
-    chainId: Number(chainId),
-    blockNumber: blockNumber,
+    chainId: chainId,
+    blockNumber: contractDeployReceipt.blockNumber,
     paymentTransactionHash: sendEthTx.hash,
-    contractTypeId: ContractType.ERC20
+    contractTypeId: ContractsType.ERC20
   };
 
   const response = await fetch(CREATE_CONTRACT_URL, {

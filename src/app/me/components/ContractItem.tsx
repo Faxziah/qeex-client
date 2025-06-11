@@ -1,6 +1,6 @@
 "use client";
 
-import {type IContract, ContractStatusRus, ContractTypeRus, ContractType} from "@/app/interface/IContract";
+import {type IContract, ContractStatusRus, ContractsTypeName, ContractsType} from "@/app/interface/IContract";
 import {_getSimpleContractInfo} from "@/app/me/services/_getSimpleContractInfo";
 import {formatDateDMYHI} from "@/app/helpers/formatDate";
 import {useModal} from "@/app/context/ModalContext";
@@ -20,18 +20,18 @@ const statusStyles = {
 };
 
 const contractTypeIcons = {
-  [ContractType.ERC20]: "💰",
-  [ContractType.ERC721]: "🖼️",
-  [ContractType.SIMPLE_CONTRACT]: "📄",
+  [ContractsType.ERC20]: "💰",
+  [ContractsType.ERC721]: "🖼️",
+  [ContractsType.SIMPLE_CONTRACT]: "📄",
 };
 
 export default function ContractItem({contract}: { contract: IContract }) {
   const {showModal} = useModal();
 
   const handleContractAction = () => {
-    if (contract.contract_type_id === ContractType.ERC20) {
+    if (contract.contract_type_id === ContractsType.ERC20) {
       _getERC20ContractInfo(contract, showModal);
-    } else if (contract.contract_type_id === ContractType.ERC721) {
+    } else if (contract.contract_type_id === ContractsType.ERC721) {
       _getERC721ContractInfo(contract, showModal);
     } else {
       _getSimpleContractInfo(contract, showModal);
@@ -40,9 +40,9 @@ export default function ContractItem({contract}: { contract: IContract }) {
 
   const getActionText = () => {
     switch (contract.contract_type_id) {
-      case ContractType.ERC20:
+      case ContractsType.ERC20:
         return "Нажмите для просмотра информации о криптовалюте";
-      case ContractType.ERC721:
+      case ContractsType.ERC721:
         return "Нажмите для просмотра информации об NFT-токене";
       default:
         return "Нажмите для просмотра текста смарт-контракта";
@@ -65,7 +65,7 @@ export default function ContractItem({contract}: { contract: IContract }) {
           <div>
             <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">Блок № {contract.block_number}</h3>
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              {ContractTypeRus[contract.contract_type_id]}
+              {ContractsTypeName[contract.contract_type_id].contractNameRus}
             </p>
           </div>
         </div>

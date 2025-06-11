@@ -1,87 +1,87 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { useMetaMaskConnection } from "@/app/hooks/useMetaMaskConnection"
-import { useModal } from "@/app/context/ModalContext"
-import type { TransactionFeeInfo, CryptocurrencyFormData } from "@/app/interface/IContract"
-import TransactionFee from "@/app/create/components/TransactionFee"
-import { _getCreateCryptocurrencyInfo } from "@/app/create/services/_getCreateCryptocurrencyInfo"
-import { _createCryptocurrency } from "../services/_createCryptocurrency"
+import type React from "react";
+import { useState } from "react";
+import { useMetaMaskConnection } from "@/app/hooks/useMetaMaskConnection";
+import { useModal } from "@/app/context/ModalContext";
+import type { TransactionFeeInfo, CryptocurrencyFormData } from "@/app/interface/IContract";
+import TransactionFee from "@/app/create/components/TransactionFee";
+import { _getCreateCryptocurrencyInfo } from "@/app/create/services/_getCreateCryptocurrencyInfo";
+import { _createCryptocurrency } from "../services/_createCryptocurrency";
 
 export default function CreateCryptocurrency() {
-  const { isConnected } = useMetaMaskConnection()
-  const { showModal, showModalError } = useModal()
-  const [transactionFee, setTransactionFee] = useState<TransactionFeeInfo | undefined>(undefined)
-  const [isLoading, setIsLoading] = useState(false)
+  const { isConnected } = useMetaMaskConnection();
+  const { showModal, showModalError } = useModal();
+  const [transactionFee, setTransactionFee] = useState<TransactionFeeInfo | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<CryptocurrencyFormData>({
     name: "",
     symbol: "",
     totalSupply: "",
-  })
+  });
 
   async function createCryptocurrency(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!isConnected) {
-      showModal("Необходимо подключить кошелек")
-      return
+      showModal("Необходимо подключить кошелек");
+      return;
     }
 
     if (!formData.name || !formData.symbol || !formData.totalSupply) {
-      showModal("Необходимо заполнить все поля")
-      return
+      showModal("Необходимо заполнить все поля");
+      return;
     }
 
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await _createCryptocurrency(formData)
+      await _createCryptocurrency(formData);
     } catch (e: unknown) {
       if (e instanceof Error) {
-        showModalError(e.message)
+        showModalError(e.message);
       } else {
-        showModalError("Неизвестная ошибка")
+        showModalError("Неизвестная ошибка");
       }
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
   async function getCreateContractInfo() {
     if (!isConnected) {
-      return
+      return;
     }
 
     if (!formData.name || !formData.symbol || !formData.totalSupply) {
-      return
+      return;
     }
 
     try {
-      const _transactionFee = await _getCreateCryptocurrencyInfo(formData)
-      setTransactionFee(_transactionFee)
+      const _transactionFee = await _getCreateCryptocurrencyInfo(formData);
+      setTransactionFee(_transactionFee);
     } catch (e: unknown) {
       if (e instanceof Error) {
-        showModalError(e.message)
-        console.log("error", e.message)
+        showModalError(e.message);
+        console.log("error", e.message);
       } else {
-        showModalError("Неизвестная ошибка")
+        showModalError("Неизвестная ошибка");
       }
     }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const handleInputBlur = () => {
-    getCreateContractInfo()
-  }
+    getCreateContractInfo();
+  };
 
-  const isFormValid = formData.name && formData.symbol && formData.totalSupply
+  const isFormValid = formData.name && formData.symbol && formData.totalSupply;
 
   return (
     <div className="min-h-screen">
@@ -350,5 +350,5 @@ export default function CreateCryptocurrency() {
         }
       `}</style>
     </div>
-  )
+  );
 }
