@@ -137,7 +137,7 @@ export default function Modal({ isOpen, title, type, onCloseAction, onConfirmAct
             <button
               onClick={onCloseAction}
               type="button"
-              className="inline-flex justify-center items-center px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-neutral-300 bg-white dark:bg-neutral-600 border border-gray-300 dark:border-neutral-500 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 dark:focus:ring-neutral-400 transition-all duration-200 w-full sm:w-auto"
+              className="inline-flex justify-center items-center px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-neutral-300 bg-white dark:bg-neutral-600 border border-gray-300 dark:border-neutral-500 rounded-lg shadow-sm hover:bg-gray-50 dark:hover:bg-neutral-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 dark:focus:ring-neutral-400 transition-all duration-200 w-full sm:w-auto cursor-pointer"
             >
               Отмена
             </button>
