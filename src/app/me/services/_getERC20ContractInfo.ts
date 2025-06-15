@@ -3,11 +3,13 @@ import {TOKEN_CONTRACT_TEMPLATE_PATH} from "@/app/constants/contractsTemplate";
 import {ModalContextProps} from "@/app/context/ModalContext";
 import {IContract} from "@/app/interface/IContract";
 import {voidFunction} from "@/app/helpers/voidFunction";
-import {getChainById, IChain} from "@/app/interface/Chains";
+import {IERC20} from "@/app/interface/IERC20";
 
 export async function _getERC20ContractInfo(
   contract: IContract,
-  showModal: ModalContextProps['showModal']
+  showModal: ModalContextProps['showModal'],
+  signer: ethers.ContractRunner,
+  provider: ethers.BrowserProvider
 ) {
   if (typeof window.ethereum === "undefined") {
     showModal("Ошибка", "MetaMask не установлен.", 'error');
@@ -15,24 +17,10 @@ export async function _getERC20ContractInfo(
   }
 
   try {
-    const provider = new ethers.BrowserProvider(window.ethereum);
     const erc20ContractAbi = await fetch(TOKEN_CONTRACT_TEMPLATE_PATH);
     const { abi: contractAbi } = await erc20ContractAbi.json();
 
-    const network = await provider.getNetwork();
-    if (contract.chain_id !== Number(network.chainId)) {
-      const chain: IChain | undefined = getChainById(contract.chain_id);
-
-      if (!chain) {
-        showModal("Ошибка", "Сеть не поддерживается", 'error');
-        return;
-      }
-
-      showModal("Ошибка", `Необходимо переключиться на сеть контракта ${chain.name}`, 'error');
-      return;
-    }
-
-    const erc20Contract = new ethers.Contract(contract.address, contractAbi, provider);
+    const erc20Contract = new ethers.Contract(contract.address, contractAbi, signer) as unknown as IERC20;
 
     const name = await erc20Contract.name();
     const symbol = await erc20Contract.symbol();

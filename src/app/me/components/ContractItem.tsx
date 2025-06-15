@@ -5,9 +5,16 @@ import {_getSimpleContractInfo} from "@/app/me/services/_getSimpleContractInfo";
 import {formatDateDMYHI} from "@/app/helpers/formatDate";
 import {useModal} from "@/app/context/ModalContext";
 import Link from "next/link";
-import {getChainById} from "@/app/interface/Chains";
+import {getChainById, IChain} from "@/app/interface/Chains";
 import {_getERC20ContractInfo} from "@/app/me/services/_getERC20ContractInfo";
 import {_getERC721ContractInfo} from "@/app/me/services/_getERC721ContractInfo";
+import {useActiveAccount, useActiveWalletChain} from "thirdweb/react";
+import {createThirdwebClient} from "thirdweb";
+import {ethers6Adapter} from "thirdweb/adapters/ethers6";
+import {ethers} from "ethers";
+
+const clientId = process.env.NEXT_PUBLIC_THIRDWEB_CLIENT_ID!;
+const client = createThirdwebClient({clientId});
 
 const statusStyles = {
   new: "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800",
@@ -27,14 +34,37 @@ const contractTypeIcons = {
 
 export default function ContractItem({contract}: { contract: IContract }) {
   const {showModal} = useModal();
+  const account = useActiveAccount();
+  const chain = useActiveWalletChain();
 
-  const handleContractAction = () => {
+  const handleContractAction = async () => {
+    if (!account || !chain) {
+      return;
+    }
+
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const network = await provider.getNetwork();
+
+    if (contract.chain_id !== Number(network.chainId)) {
+      const chain: IChain | undefined = getChainById(contract.chain_id);
+
+      if (!chain) {
+        showModal("Ошибка", "Сеть не поддерживается", 'error');
+        return;
+      }
+
+      showModal("Ошибка", `Необходимо переключиться на сеть контракта ${chain.name}`, 'error');
+      return;
+    }
+
+    const signer = ethers6Adapter.signer.toEthers({client, chain, account});
+
     if (contract.contract_type_id === ContractsType.ERC20) {
-      _getERC20ContractInfo(contract, showModal);
+      _getERC20ContractInfo(contract, showModal, signer, provider);
     } else if (contract.contract_type_id === ContractsType.ERC721) {
-      _getERC721ContractInfo(contract, showModal);
+      _getERC721ContractInfo(contract, showModal, signer);
     } else {
-      _getSimpleContractInfo(contract, showModal);
+      _getSimpleContractInfo(contract, showModal, signer);
     }
   };
 

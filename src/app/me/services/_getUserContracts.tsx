@@ -4,7 +4,7 @@ import {ethers} from "ethers";
 
 export async function _getUserContracts(): Promise<object[] | undefined> {
   if (!window.ethereum) {
-    console.warn("MetaMask is not installed");
+    console.warn("Подключите кошелек");
     return;
   }
 

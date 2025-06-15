@@ -1,42 +1,28 @@
 "use client"
 
-import {useEffect, useState} from "react"
+import { useTheme } from "next-themes"
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 export default function DarkModeSwitcher() {
-  const [theme, setTheme] = useState<string | null>(null)
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-    const savedTheme =
-      localStorage.getItem("color-theme") ||
-      (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+  useEffect(() => setMounted(true), [])
 
-    setTheme(savedTheme)
-  }, [])
-
-  useEffect(() => {
-    if (theme) {
-      document.documentElement.classList.toggle("dark", theme === "dark")
-      localStorage.setItem("color-theme", theme)
-    }
-  }, [theme])
-
-  function toggleMode() {
-    setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"))
+  if (!mounted) {
+    return <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 dark:bg-neutral-700 dark:border-gray-700 animate-pulse"/>
   }
 
-  // Prevent hydration mismatch
-  if (!mounted) {
-    return <div className="w-12 h-12 rounded-xl bg-white border border-gray-200 dark:bg-neutral-700 dark:border-gray-700  animate-pulse"/>
+  function toggleMode() {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark")
   }
 
   return (
     <button
       onClick={toggleMode}
       className="group relative inline-flex items-center justify-center w-12 h-12 rounded-xl bg-white dark:bg-neutral-700 border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      aria-label={`Switch to ${resolvedTheme === "dark" ? "light" : "dark"} mode`}
     >
       {/* Background gradient on hover */}
       <div

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import DarkModeSwitcher from "@/app/components/DarkModeSwitcher"
+import ConnectWalletButton from "@/app/components/ConnectWalletButton";
 
 export default function Header() {
   const [isMenuOpened, setIsMenuOpened] = useState(false)
@@ -146,7 +147,7 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4">
-            <appkit-button label={'Подключить кошелек'} loadingLabel={'Подключение'}/>
+            <ConnectWalletButton/>
             <DarkModeSwitcher/>
           </div>
 
@@ -204,7 +205,7 @@ export default function Header() {
 
             {/* Mobile Actions */}
             <div className="flex items-center justify-center gap-4 pt-4 border-t border-border/40">
-              <appkit-button label={'Подключить кошелек'} loadingLabel={'Подключение'}/>
+              <ConnectWalletButton/>
               <DarkModeSwitcher/>
             </div>
           </nav>

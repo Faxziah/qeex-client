@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import CreateContractButtons from "@/app/components/CreateContractButtons";
+import ConnectWalletButton from "@/app/components/ConnectWalletButton";
 
 export default function Banner() {
   return (
@@ -41,10 +42,10 @@ export default function Banner() {
               className="text-xl md:text-2xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-[#0891b2] dark:group-hover:text-[#B2EBF2] relative">
               <span
                 className="absolute -left-6 top-3 w-4 h-4 rounded-full bg-[#0891b2] dark:bg-[#B2EBF2] opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              Подключите кошелек Metamask
+              Подключи или создай криптокошелек в 1 клик
             </h3>
             <div className="text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white">
-              <appkit-button label={'Подключить кошелек'} loadingLabel={'Подключение'}/>
+              <ConnectWalletButton/>
             </div>
           </div>
 
@@ -59,7 +60,7 @@ export default function Banner() {
               href="/create/simple-contract"
               className="text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white block"
             >
-              И заполни информацию о смарт-контракте
+              И заполни данные для него
             </Link>
           </div>
 
@@ -68,13 +69,13 @@ export default function Banner() {
               className="text-xl md:text-2xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-[#0891b2] dark:group-hover:text-[#B2EBF2] relative">
               <span
                 className="absolute -left-6 top-3 w-4 h-4 rounded-full bg-[#0891b2] dark:bg-[#B2EBF2] opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              Подтвердите транзакции
+              Подтверди транзакции
             </h3>
             <Link
               href="/create/simple-contract"
               className="text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white block"
             >
-              Первая транзакция - комиссия сервиса, вторая - создание твоего уникального смарт-контракта
+              Первая транзакция - комиссия сервиса, вторая - создание твоего смарт-контракта
             </Link>
           </div>
 
@@ -83,7 +84,7 @@ export default function Banner() {
               className="text-xl md:text-2xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-[#0891b2] dark:group-hover:text-[#B2EBF2] relative">
               <span
                 className="absolute -left-6 top-3 w-4 h-4 rounded-full bg-[#0891b2] dark:bg-[#B2EBF2] opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              Перейдите в личный кабинет
+              Перейди в личный кабинет
             </h3>
             <Link
               href="/me"

@@ -6,6 +6,7 @@ import {ContractStatus, type IContract} from "@/app/interface/IContract"
 import {_getUserContracts} from "@/app/me/services/_getUserContracts"
 import {useMetaMaskConnection} from "@/app/hooks/useMetaMaskConnection"
 import CreateContractButtons from "@/app/components/CreateContractButtons";
+import ConnectWalletButton from "@/app/components/ConnectWalletButton";
 
 export default function Home() {
   const {isConnected} = useMetaMaskConnection()
@@ -28,6 +29,10 @@ export default function Home() {
   return (
     <div className="min-h-screen transition-colors duration-300">
       <main className="relative">
+        <div>
+          <ConnectWalletButton/>
+        </div>
+
         {/* Hero Section with Improved Title */}
         <div
           className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900 py-16 sm:py-24">
@@ -83,7 +88,7 @@ export default function Home() {
                     Для загрузки смарт-контрактов нужно подключить кошелек
                   </p>
                   <div className={'flex justify-center'}>
-                  <appkit-button label={'Подключить кошелек'} loadingLabel={'Подключение'}/>
+                    <ConnectWalletButton/>
                   </div>
                 </div>
               )}
